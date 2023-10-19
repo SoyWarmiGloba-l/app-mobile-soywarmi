@@ -9,7 +9,7 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _RegisterPage();
+    return const _RegisterPage();
   }
 }
 
@@ -50,13 +50,16 @@ class __RegisterPageState extends State<_RegisterPage> {
                 const CustomTextField(label: 'Apellido'),
                 const CustomTextField(label: 'Contraseña'),
                 const CustomTextField(label: 'Confirmar contraseña'),
-                const Padding(
-                  padding: EdgeInsets.only(
+                Padding(
+                  padding: const EdgeInsets.only(
                     top: 20,
                     left: 20,
                     right: 20,
                   ),
-                  child: CustomButton(label: 'Crear cuenta'),
+                  child: CustomButton(
+                    label: 'Crear cuenta',
+                    onPressed: () {},
+                  ),
                 ),
                 const SizedBox(height: 15),
                 Row(

@@ -60,7 +60,7 @@ class __LoginPageViewState extends State<_LoginPageView> {
                       Align(
                           alignment: Alignment.centerRight,
                           child: Padding(
-                            padding: EdgeInsets.only(right: 25),
+                            padding: const EdgeInsets.only(right: 25),
                             child: InkWell(
                               onTap: () {
                                 Navigator.pushNamed(
@@ -74,13 +74,18 @@ class __LoginPageViewState extends State<_LoginPageView> {
                                           .withOpacity(0.5))),
                             ),
                           )),
-                      const Padding(
-                        padding: EdgeInsets.only(
+                      Padding(
+                        padding: const EdgeInsets.only(
                           top: 20,
                           left: 20,
                           right: 20,
                         ),
-                        child: CustomButton(label: 'Iniciar sesión'),
+                        child: CustomButton(
+                          label: 'Iniciar sesión',
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/home');
+                          },
+                        ),
                       ),
                       const Row(
                         children: [

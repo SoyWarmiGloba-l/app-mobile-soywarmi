@@ -3,7 +3,8 @@ import 'package:soywarmi_app/utilities/nb_colors.dart';
 
 class CustomButton extends StatelessWidget {
   final String label;
-  const CustomButton({super.key, required this.label});
+  final VoidCallback onPressed;
+  const CustomButton({super.key, required this.label, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class CustomButton extends StatelessWidget {
       width: double.infinity,
       height: 50,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: NBSecondPrimaryColor,
           shape: RoundedRectangleBorder(
