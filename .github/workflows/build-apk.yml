@@ -21,7 +21,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.10.0"
-          channel: "stable"
+          channel: 'stable'
       - run: flutter pub get
       - run: flutter build apk --release --split-per-abi
 
@@ -29,6 +29,6 @@ jobs:
         uses: ncipollo/release-action@v1
         with: 
           artifacts: "build/app/outputs/apk/release/*"
-          tag: v0.0.1
+          tag: ${{ steps.get_commit_id.outputs.commit_id }}
           token: ${{ secrets.APP_TOKEN }}
 
