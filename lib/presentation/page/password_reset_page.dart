@@ -50,13 +50,16 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(
+          Padding(
+            padding: const EdgeInsets.only(
               top: 20,
               left: 20,
               right: 20,
             ),
-            child: CustomButton(label: 'Restablecer contraseña'),
+            child: CustomButton(
+              label: 'Restablecer contraseña',
+              onPressed: () {},
+            ),
           ),
         ],
       )),

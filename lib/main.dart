@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:soywarmi_app/presentation/page/main_page.dart';
 import 'package:soywarmi_app/presentation/page/login_page.dart';
 import 'package:soywarmi_app/presentation/page/password_reset_page.dart';
 import 'package:soywarmi_app/presentation/page/register_page.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
             ),
         '/register': (context) => const RegisterPage(),
         '/forgot_password': (context) => const PasswordResetPage(),
+        '/home': (context) => const MainPage(),
       },
     );
   }
