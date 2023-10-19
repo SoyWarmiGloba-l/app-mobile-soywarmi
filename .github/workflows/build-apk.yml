@@ -22,8 +22,16 @@ jobs:
         with:
           flutter-version: "3.10.0"
           channel: 'stable'
+
       - run: flutter pub get
+        name: Downloading packages
+
       - run: flutter build apk --release --split-per-abi
+        name: Building apk
+
+      - name: Get commit ID
+        id: get_commit_id
+        run: echo ::set-output name=commit_id::$(git rev-parse --short HEAD)
 
       - name: Push to Releases
         uses: ncipollo/release-action@v1
@@ -31,4 +39,5 @@ jobs:
           artifacts: "build/app/outputs/apk/release/*"
           tag: ${{ steps.get_commit_id.outputs.commit_id }}
           token: ${{ secrets.APP_TOKEN }}
+          prerelease: true
 
