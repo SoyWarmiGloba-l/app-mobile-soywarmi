@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:soywarmi_app/presentation/page/login_page.dart';
+import 'package:soywarmi_app/presentation/page/password_reset_page.dart';
+import 'package:soywarmi_app/presentation/page/register_page.dart';
+import 'package:soywarmi_app/utilities/app_theme_data.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:soywarmi_app/utilities/nb_images.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,45 +16,35 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     return MaterialApp(
-      title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red.shade900),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'SoyWarmi Page'),
+      theme: AppThemeData.theme,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => AnimatedSplashScreen(
+              duration: 1500,
+              splash: NBWarmiLogo,
+              splashTransition: SplashTransition.slideTransition,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              nextScreen: const _FirstPage(),
+            ),
+        '/register': (context) => const RegisterPage(),
+        '/forgot_password': (context) => const PasswordResetPage(),
+      },
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class _FirstPage extends StatelessWidget {
+  const _FirstPage();
 
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'App SoyWarmi',
-            ),
-          ],
-        ),
-      ),
-    );
+    return const LoginPage();
   }
 }
