@@ -30,7 +30,8 @@ class _CustomTextPasswordState extends State<CustomTextPassword> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
       child: TextFormField(
         controller: widget.controller,
         obscureText: obscureText,

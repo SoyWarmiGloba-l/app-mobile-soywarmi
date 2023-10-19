@@ -26,43 +26,46 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      obscureText: obscureText,
-      onChanged: onChanged,
-      keyboardType: type,
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: NbSecondSecondaryColor,
-        labelText: label,
-        labelStyle: TextStyle(
-          color: Theme.of(context).primaryColor,
-        ),
-        prefixIcon: icon != null
-            ? Icon(
-                icon,
-                color: Theme.of(context).primaryColor,
-              )
-            : null,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(
-            color: Theme.of(context).cardColor,
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+      child: TextFormField(
+        controller: controller,
+        obscureText: obscureText,
+        onChanged: onChanged,
+        keyboardType: type,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: NbSecondSecondaryColor,
+          labelText: label,
+          labelStyle: TextStyle(
+            color: Theme.of(context).primaryColor,
+          ),
+          prefixIcon: icon != null
+              ? Icon(
+                  icon,
+                  color: Theme.of(context).primaryColor,
+                )
+              : null,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(
+              color: Theme.of(context).cardColor,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(
+              color: Colors.grey[400]!,
+            ),
           ),
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(
-            color: Colors.grey[400]!,
-          ),
-        ),
+        enabled: enabled,
+        validator: validator,
+        onSaved: onSaved,
       ),
-      enabled: enabled,
-      validator: validator,
-      onSaved: onSaved,
     );
   }
 }

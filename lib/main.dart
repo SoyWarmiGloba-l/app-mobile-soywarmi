@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:soywarmi_app/presentation/page/login_page.dart';
+import 'package:soywarmi_app/presentation/page/password_reset_page.dart';
+import 'package:soywarmi_app/presentation/page/register_page.dart';
 import 'package:soywarmi_app/utilities/app_theme_data.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:soywarmi_app/utilities/nb_images.dart';
@@ -31,6 +33,8 @@ class MyApp extends StatelessWidget {
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               nextScreen: const _FirstPage(),
             ),
+        '/register': (context) => const RegisterPage(),
+        '/forgot_password': (context) => const PasswordResetPage(),
       },
     );
   }

@@ -42,11 +42,12 @@ class __LoginPageViewState extends State<_LoginPageView> {
                   width: ScreenSizeUtil.scaleWidth(0.8),
                   height: ScreenSizeUtil.scaleHeight(0.28),
                 ),
-                const Text(
+                Text(
                   'Iniciar sesión',
                   style: TextStyle(
                     fontSize: 38,
                     fontWeight: FontWeight.bold,
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
                 SizedBox(height: ScreenSizeUtil.scaleHeight(0.05)),
@@ -54,32 +55,30 @@ class __LoginPageViewState extends State<_LoginPageView> {
                   child: Form(
                     key: formKey,
                     child: Column(children: [
-                      const Padding(
-                        padding:
-                            EdgeInsets.only(left: 25, right: 25, bottom: 10),
-                        child: CustomTextField(label: 'Correo'),
-                      ),
-                      const Padding(
-                        padding:
-                            EdgeInsets.only(left: 25, right: 25, bottom: 10),
-                        child: CustomTextPassword(label: 'Constreseña'),
-                      ),
+                      const CustomTextField(label: 'Correo'),
+                      const CustomTextPassword(label: 'Constreseña'),
                       Align(
                           alignment: Alignment.centerRight,
                           child: Padding(
                             padding: EdgeInsets.only(right: 25),
-                            child: Text('¿Olvidaste tu contraseña?',
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Theme.of(context)
-                                        .primaryColorDark
-                                        .withOpacity(0.5))),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, '/forgot_password');
+                              },
+                              child: Text('¿Olvidaste tu contraseña?',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: Theme.of(context)
+                                          .primaryColorDark
+                                          .withOpacity(0.5))),
+                            ),
                           )),
                       const Padding(
                         padding: EdgeInsets.only(
                           top: 20,
-                          left: 25,
-                          right: 25,
+                          left: 20,
+                          right: 20,
                         ),
                         child: CustomButton(label: 'Iniciar sesión'),
                       ),
@@ -115,11 +114,16 @@ class __LoginPageViewState extends State<_LoginPageView> {
                                   color: Theme.of(context)
                                       .primaryColorDark
                                       .withOpacity(0.5))),
-                          const Text(
-                            ' Registrate',
-                            style: TextStyle(
-                              color: NBSecondPrimaryColor,
-                              fontWeight: FontWeight.bold,
+                          InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/register');
+                            },
+                            child: const Text(
+                              ' Registrate',
+                              style: TextStyle(
+                                color: NBSecondPrimaryColor,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           )
                         ],
