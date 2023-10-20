@@ -3,7 +3,8 @@ import 'package:soywarmi_app/utilities/nb_colors.dart';
 import 'package:soywarmi_app/utilities/nb_images.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key});
+  final String title;
+  const CustomAppBar({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +16,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Image.asset(NbLogoAppBar,
             height: 50, width: 50, fit: BoxFit.contain),
       ),
-      title: const Text(
-        'SoyWarmi',
-        style: TextStyle(
+      title: Text(
+        title,
+        style: const TextStyle(
           color: NBSecondPrimaryColor,
           fontSize: 25,
           fontWeight: FontWeight.bold,
