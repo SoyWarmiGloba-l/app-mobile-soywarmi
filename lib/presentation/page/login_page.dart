@@ -56,7 +56,7 @@ class __LoginPageViewState extends State<_LoginPageView> {
                     key: formKey,
                     child: Column(children: [
                       const CustomTextField(label: 'Correo'),
-                      const CustomTextPassword(label: 'Constreseña'),
+                      const CustomTextPassword(label: 'Constraseña'),
                       Align(
                           alignment: Alignment.centerRight,
                           child: Padding(

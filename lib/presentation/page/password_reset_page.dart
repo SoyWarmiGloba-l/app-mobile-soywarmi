@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:soywarmi_app/presentation/widget/custom_button.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
 import 'package:soywarmi_app/utilities/nb_images.dart';
@@ -25,10 +26,10 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(
-            NBWarmiLogo,
-            width: ScreenSizeUtil.scaleWidth(0.8),
-            height: ScreenSizeUtil.scaleHeight(0.28),
+          Lottie.asset(
+            'assets/animations/reset_password.json',
+            height: ScreenSizeUtil.scaleWidth(0.28),
+            width: ScreenSizeUtil.scaleHeight(0.8),
           ),
           const Text(
             'Olvidaste tu contraseña?',

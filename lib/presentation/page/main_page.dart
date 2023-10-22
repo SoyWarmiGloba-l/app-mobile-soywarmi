@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:soywarmi_app/presentation/page/chats_page.dart';
 import 'package:soywarmi_app/presentation/page/home_page.dart';
+import 'package:soywarmi_app/presentation/page/map_page.dart';
 import 'package:soywarmi_app/presentation/page/posts_page.dart';
 import 'package:soywarmi_app/presentation/page/specialists_page.dart';
 import 'package:soywarmi_app/presentation/widget/custom_app_bar.dart';
@@ -33,13 +35,24 @@ class _MainPageState extends State<MainPage> {
           index: _selectedIndex,
           children: const [
             HomePage(),
-            Text('Hospitales'),
+            MapPage(),
             SpecialistsPage(),
             PostPage(),
-            Text('Chat'),
+            ChatsPage(),
           ],
         ),
-        floatingActionButton: _selectedIndex == 3 ? _newPosy : null,
+        floatingActionButton: _selectedIndex == 3
+            ? FloatingActionButton(
+                backgroundColor: NBSecondPrimaryColor,
+                onPressed: () {
+                  Navigator.pushNamed(context, '/new_post');
+                },
+                child: const Icon(
+                  Icons.add,
+                  color: NBColorWhite,
+                ),
+              )
+            : null,
         bottomNavigationBar: CustomBottomNavigationBar(
           selectedIndex: _selectedIndex,
           onTabChange: (index) {
@@ -50,12 +63,3 @@ class _MainPageState extends State<MainPage> {
         ));
   }
 }
-
-final Widget _newPosy = FloatingActionButton(
-  backgroundColor: NBPrimaryColor,
-  onPressed: () {},
-  child: const Icon(
-    Icons.add,
-    color: NBColorWhite,
-  ),
-);

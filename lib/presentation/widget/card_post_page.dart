@@ -51,17 +51,17 @@ class CardPostPage extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const Icon(
-                    Icons.favorite,
+                  Icon(
+                    Icons.favorite_border,
                     size: 30,
+                    color: Theme.of(context).primaryColor,
                   ),
                   const SizedBox(width: 8),
                   Text(
                     '13',
                     style: TextStyle(
                       fontSize: 16,
-                      color:
-                          Theme.of(context).primaryColorDark.withOpacity(0.5),
+                      color: Theme.of(context).primaryColor.withOpacity(0.5),
                     ),
                   ),
                 ],
@@ -69,14 +69,17 @@ class CardPostPage extends StatelessWidget {
               const SizedBox(width: 16),
               Row(
                 children: [
-                  const Icon(Icons.message, size: 30),
+                  Icon(
+                    Icons.chat_bubble_outline,
+                    size: 30,
+                    color: Theme.of(context).primaryColor,
+                  ),
                   const SizedBox(width: 8),
                   Text(
                     '19',
                     style: TextStyle(
                       fontSize: 16,
-                      color:
-                          Theme.of(context).primaryColorDark.withOpacity(0.5),
+                      color: Theme.of(context).primaryColor.withOpacity(0.5),
                     ),
                   ),
                 ],

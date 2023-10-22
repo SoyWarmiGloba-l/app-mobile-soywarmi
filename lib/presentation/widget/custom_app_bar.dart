@@ -60,15 +60,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ],
             ),
             iconSize: 40,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/notifications');
+            },
           ),
         ]),
-        const Padding(
-          padding: EdgeInsets.only(right: 8),
-          child: CircleAvatar(
-            radius: 20,
-            backgroundColor: Colors.transparent,
-            backgroundImage: AssetImage(NbImageEmpty),
+        InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, '/profile');
+          },
+          child: const Padding(
+            padding: EdgeInsets.only(right: 8, left: 8),
+            child: CircleAvatar(
+              radius: 20,
+              backgroundColor: Colors.transparent,
+              backgroundImage: AssetImage(NbImageEmpty),
+            ),
           ),
         )
       ],

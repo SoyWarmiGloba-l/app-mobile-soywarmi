@@ -43,6 +43,7 @@ class _CustomTextPasswordState extends State<CustomTextPassword> {
           labelText: widget.label,
           labelStyle: TextStyle(
             color: Theme.of(context).primaryColor,
+            fontSize: 15,
           ),
           suffixIcon: IconButton(
             onPressed: () {
