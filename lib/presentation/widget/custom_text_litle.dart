@@ -9,7 +9,7 @@ class CustomTextTitle extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Padding(
-        padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
+        padding: const EdgeInsets.only(top: 8, bottom: 8),
         child: Text(
           label,
           textAlign: TextAlign.left,

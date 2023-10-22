@@ -31,7 +31,7 @@ class _CustomTextPasswordState extends State<CustomTextPassword> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+      padding: const EdgeInsets.only(bottom: 10),
       child: TextFormField(
         controller: widget.controller,
         obscureText: obscureText,
@@ -42,7 +42,7 @@ class _CustomTextPasswordState extends State<CustomTextPassword> {
           fillColor: NbSecondSecondaryColor,
           labelText: widget.label,
           labelStyle: TextStyle(
-            color: Theme.of(context).primaryColor,
+            color: Theme.of(context).primaryColor.withOpacity(0.6),
             fontSize: 15,
           ),
           suffixIcon: IconButton(

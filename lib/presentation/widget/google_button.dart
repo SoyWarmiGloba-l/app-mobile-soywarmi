@@ -7,7 +7,7 @@ class GoogleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 25, right: 25, bottom: 10),
+      padding: const EdgeInsets.only(bottom: 10),
       child: SizedBox(
         width: double.infinity,
         height: 50,

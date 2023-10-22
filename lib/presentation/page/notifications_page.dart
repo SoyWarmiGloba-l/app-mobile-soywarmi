@@ -31,33 +31,33 @@ class _NotificationsPageState extends State<NotificationsPage> {
               icon: Icon(Icons.delete, color: Theme.of(context).primaryColor),
             ),
           ]),
-      body: Center(
-          child: ListView(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-            Lottie.asset('assets/animations/no_notifications.json',
-                height: 300),
-            Text(
-              'No tienes notificaciones',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).primaryColor),
-            ),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
+      body: Container(
+        margin: const EdgeInsets.only(right: 20, left: 20),
+        child: Center(
+            child: ListView(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+              Lottie.asset('assets/animations/no_notifications.json',
+                  height: 250),
+              Text(
+                'No tienes notificaciones',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).primaryColor),
+              ),
+              const SizedBox(height: 10),
+              Text(
                 'Ya viste o eliminaste todas tus notificaciones. Cuanto tengas una nueva, aparecerá aquí.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 16,
                     color: Theme.of(context).primaryColor.withOpacity(0.5)),
               ),
-            ),
-          ])),
+            ])),
+      ),
     );
   }
 }
