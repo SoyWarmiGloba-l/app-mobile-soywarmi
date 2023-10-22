@@ -26,8 +26,8 @@ class __RegisterPageState extends State<_RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: Padding(
-        padding: const EdgeInsets.all(10.0),
+          child: Container(
+        margin: EdgeInsets.only(right: 23, left: 23),
         child: SingleChildScrollView(
             reverse: true,
             child: Column(
@@ -54,8 +54,6 @@ class __RegisterPageState extends State<_RegisterPage> {
                 Padding(
                   padding: const EdgeInsets.only(
                     top: 20,
-                    left: 20,
-                    right: 20,
                   ),
                   child: CustomButton(
                     label: 'Crear cuenta',

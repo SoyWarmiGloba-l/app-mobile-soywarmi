@@ -16,14 +16,13 @@ class CustomButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: NBSecondPrimaryColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(25),
           ),
         ),
         child: Text(
           label,
           style: const TextStyle(
             fontSize: 18,
-            fontWeight: FontWeight.bold,
           ),
         ),
       ),

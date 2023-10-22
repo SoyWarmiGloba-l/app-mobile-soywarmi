@@ -31,12 +31,12 @@ class __LoginPageViewState extends State<_LoginPageView> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Center(
-        child: SingleChildScrollView(
-            child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+        child: Container(
+          margin: const EdgeInsets.only(left: 20, right: 20),
+          child: SingleChildScrollView(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
                 Image.asset(
                   NBWarmiLogo,
                   width: ScreenSizeUtil.scaleWidth(0.8),
@@ -59,26 +59,20 @@ class __LoginPageViewState extends State<_LoginPageView> {
                       const CustomTextPassword(label: 'Constraseña'),
                       Align(
                           alignment: Alignment.centerRight,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 25),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, '/forgot_password');
-                              },
-                              child: Text('¿Olvidaste tu contraseña?',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Theme.of(context)
-                                          .primaryColorDark
-                                          .withOpacity(0.5))),
-                            ),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/forgot_password');
+                            },
+                            child: Text('¿Olvidaste tu contraseña?',
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    color: Theme.of(context)
+                                        .primaryColorDark
+                                        .withOpacity(0.5))),
                           )),
                       Padding(
                         padding: const EdgeInsets.only(
                           top: 20,
-                          left: 20,
-                          right: 20,
                         ),
                         child: CustomButton(
                           label: 'Iniciar sesión',
@@ -136,8 +130,8 @@ class __LoginPageViewState extends State<_LoginPageView> {
                     ]),
                   ),
                 )
-              ]),
-        )),
+              ])),
+        ),
       ),
     );
   }

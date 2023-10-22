@@ -1,52 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    required this.label,
-    super.key,
-    this.controller,
-    this.obscureText = false,
-    this.icon,
-    this.onChanged,
-    this.enabled = true,
-    this.type = TextInputType.text,
-    this.validator,
-    this.onSaved,
-  });
-  final String label;
-  final TextEditingController? controller;
-  final bool obscureText;
-  final IconData? icon;
-  final void Function(String?)? onChanged;
-  final bool enabled;
-  final TextInputType type;
-  final String? Function(String?)? validator;
-  final void Function(String?)? onSaved;
+class CustomDatePicker extends StatefulWidget {
+  @override
+  _CustomDatePickerState createState() => _CustomDatePickerState();
+}
+
+class _CustomDatePickerState extends State<CustomDatePicker> {
+  DateTime? selectedDate;
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime picked = (await showDatePicker(
+          context: context,
+          initialDate: selectedDate ?? DateTime.now(),
+          firstDate: DateTime(2000),
+          lastDate: DateTime(2101),
+        )) ??
+        DateTime.now();
+
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    String formattedDate = selectedDate != null
+        ? DateFormat.yMd().format(selectedDate!)
+        : 'Seleccionar fecha';
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: TextFormField(
-        controller: controller,
-        obscureText: obscureText,
-        onChanged: onChanged,
-        keyboardType: type,
         decoration: InputDecoration(
           filled: true,
           fillColor: NbSecondSecondaryColor,
-          labelText: label,
+          labelText: 'Fecha de nacimiento',
           labelStyle: TextStyle(
             color: Theme.of(context).primaryColor.withOpacity(0.6),
             fontSize: 15,
           ),
-          prefixIcon: icon != null
-              ? Icon(
-                  icon,
-                  color: Theme.of(context).primaryColor,
-                )
-              : null,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -63,9 +59,9 @@ class CustomTextField extends StatelessWidget {
             ),
           ),
         ),
-        enabled: enabled,
-        validator: validator,
-        onSaved: onSaved,
+        readOnly: true,
+        controller: TextEditingController(text: formattedDate),
+        onTap: () => _selectDate(context),
       ),
     );
   }

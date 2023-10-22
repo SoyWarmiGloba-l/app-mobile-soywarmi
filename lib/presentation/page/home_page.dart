@@ -44,10 +44,10 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(right: 10),
+          padding: const EdgeInsets.only(left: 20, right: 10),
           child: Row(
             children: [
-              CustomTextTitle(label: 'Noticias de SoyWarmi'),
+              const CustomTextTitle(label: 'Noticias de SoyWarmi'),
               const Spacer(),
               TextButton(
                 onPressed: () {},
@@ -63,7 +63,9 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
+          padding: const EdgeInsets.only(
+            left: 20,
+          ),
           child: SizedBox(
             height: 220,
             child: ListView.builder(
@@ -107,10 +109,10 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(right: 10),
+          padding: const EdgeInsets.only(left: 20, right: 10),
           child: Row(
             children: [
-              CustomTextTitle(label: 'Miembros'),
+              const CustomTextTitle(label: 'Miembros'),
               const Spacer(),
               TextButton(
                 onPressed: () {},
@@ -126,7 +128,9 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
+          padding: const EdgeInsets.only(
+            left: 20,
+          ),
           child: SizedBox(
             height: 200,
             child: ListView.builder(
