@@ -39,6 +39,7 @@ class CustomTextField extends StatelessWidget {
           labelText: label,
           labelStyle: TextStyle(
             color: Theme.of(context).primaryColor,
+            fontSize: 15,
           ),
           prefixIcon: icon != null
               ? Icon(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soywarmi_app/presentation/widget/custom_button.dart';
 import 'package:soywarmi_app/presentation/widget/custom_text_field.dart';
+import 'package:soywarmi_app/presentation/widget/custom_text_password.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
 import 'package:soywarmi_app/utilities/nb_images.dart';
 
@@ -48,8 +49,8 @@ class __RegisterPageState extends State<_RegisterPage> {
                 const CustomTextField(label: 'Correo'),
                 const CustomTextField(label: 'Nombre'),
                 const CustomTextField(label: 'Apellido'),
-                const CustomTextField(label: 'Contraseña'),
-                const CustomTextField(label: 'Confirmar contraseña'),
+                const CustomTextPassword(label: 'Contraseña'),
+                const CustomTextPassword(label: 'Confirmar contraseña'),
                 Padding(
                   padding: const EdgeInsets.only(
                     top: 20,
