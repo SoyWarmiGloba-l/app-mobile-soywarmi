@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => AnimatedSplashScreen(
               duration: 1500,
               splash: NBWarmiLogo,
+              splashIconSize: 100,
               splashTransition: SplashTransition.slideTransition,
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               nextScreen: const _FirstPage(),
