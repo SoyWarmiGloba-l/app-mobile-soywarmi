@@ -32,7 +32,6 @@ class _MapPageState extends State<MapPage> {
             TileLayer(
               urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
               userAgentPackageName: 'com.example.app',
-              subdomains: const ['a', 'b', 'c'],
             ),
           ],
         ),

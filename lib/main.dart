@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:soywarmi_app/firebase_options.dart';
 import 'package:soywarmi_app/presentation/page/edit_profile_page.dart';
 import 'package:soywarmi_app/presentation/page/main_page.dart';
 import 'package:soywarmi_app/presentation/page/login_page.dart';
@@ -11,8 +12,13 @@ import 'package:soywarmi_app/presentation/page/register_page.dart';
 import 'package:soywarmi_app/utilities/app_theme_data.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:soywarmi_app/utilities/nb_images.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

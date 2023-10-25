@@ -45,14 +45,11 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: CircleAvatar(
-                          radius: 30,
-                          backgroundImage: AssetImage(NbImageEmpty),
-                        ),
+                      const CircleAvatar(
+                        radius: 30,
+                        backgroundImage: AssetImage(NbImageEmpty),
                       ),
-                      const SizedBox(width: 12),
+                      const SizedBox(width: 20),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
