@@ -37,23 +37,27 @@ class AuthenticationFirebaseRemoteDataSourceImplementation
   }
 
   @override
-  Future<void> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
+  Future<void> signOut() async {
+    try {
+      await _firebaseAuth.signOut();
+    } catch (e) {
+      throw Exception('Error: Failed to sign out');
+    }
   }
 
   @override
   Future<UserModel?> get user async {
     final user = _firebaseAuth.currentUser;
     if (user != null) {
+      print('el usuario ya inicio sesion =================');
       return UserModel(
         id: user.uid,
         email: user.email!,
         password: '',
         rol: '',
       );
-    } else {
-      return null;
     }
+    print('el usuario no inicio sesion =================');
+    return null;
   }
 }

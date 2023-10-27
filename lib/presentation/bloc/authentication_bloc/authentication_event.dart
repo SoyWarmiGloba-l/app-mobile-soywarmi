@@ -8,8 +8,8 @@ abstract class AuthenticationEvent extends Equatable {
 }
 
 class AuthenticationStatusChanged extends AuthenticationEvent {
-  const AuthenticationStatusChanged(this.isAuthenticated);
   final bool isAuthenticated;
+  const AuthenticationStatusChanged(this.isAuthenticated);
 
   @override
   List<Object> get props => [isAuthenticated];
@@ -18,6 +18,6 @@ class AuthenticationStatusChanged extends AuthenticationEvent {
 class SignOutRequested extends AuthenticationEvent {}
 
 class MembershipUpdatedEvent extends AuthenticationEvent {
-  const MembershipUpdatedEvent(this.state);
   final bool state;
+  const MembershipUpdatedEvent(this.state);
 }

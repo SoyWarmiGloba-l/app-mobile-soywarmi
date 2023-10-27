@@ -10,7 +10,7 @@ class SignInUseCase extends FutureUsesCase<void, SignInParams> {
 
   final AuthenticatorRepository _authenticatorRepository;
   @override
-  Future<Either<Failure, void>> call(SignInParams params) {
+  Future<Either<AuthenticationFailure, void>> call(SignInParams params) {
     return _authenticatorRepository.signIn(
       params.type,
       email: params.email,

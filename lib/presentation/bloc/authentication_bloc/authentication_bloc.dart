@@ -12,14 +12,12 @@ part 'authentication_state.dart';
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   AuthenticationBloc({
-    ReadAuthenticationStateUseCase? readUserAuthenticationStateUseCase,
+    ReadUserAuthenticationStateUseCase? readUserAuthenticationStateUseCase,
     SignOutUseCase? signOutUseCase,
   })  : _readUserAuthenticationStateUseCase =
             readUserAuthenticationStateUseCase ??
-                ReadAuthenticationStateUseCase(
-                    authenticationStateRepository: null),
-        _signOutUseCase = signOutUseCase ??
-            SignOutUseCase(authenticationStateRepository: null),
+                ReadUserAuthenticationStateUseCase(),
+        _signOutUseCase = signOutUseCase ?? SignOutUseCase(),
         super(AuthenticationInitial()) {
     on<AuthenticationStatusChanged>(_onAuthenticationStatusChanged);
     on<SignOutRequested>(_onSignOutRequested);
@@ -32,7 +30,7 @@ class AuthenticationBloc
     );
   }
 
-  final ReadAuthenticationStateUseCase _readUserAuthenticationStateUseCase;
+  final ReadUserAuthenticationStateUseCase _readUserAuthenticationStateUseCase;
 
   final SignOutUseCase _signOutUseCase;
 
@@ -42,7 +40,7 @@ class AuthenticationBloc
     AuthenticationStatusChanged event,
     Emitter<AuthenticationState> emit,
   ) async {
-    if (event.isAuthenticated && state is AuthenticationInitial) {
+    if (event.isAuthenticated) {
       final getUserResult =
           await _readUserAuthenticationStateUseCase.call(NoParams());
       getUserResult.fold(

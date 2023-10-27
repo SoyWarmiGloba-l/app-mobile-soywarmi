@@ -31,7 +31,7 @@ class AuthenticatorRepositoryImplementation extends AuthenticatorRepository {
         return Left(AuthenticationFailure('Invalid authenticator type'));
       }
     } on FirebaseAuthException catch (e) {
-      return Left(AuthenticationFailure.fromSignInWithEmailCode(e.code));
+      return Left(AuthenticationFailure(e.code));
     } on Exception catch (e) {
       return Left(AuthenticationFailure(e.toString()));
     }

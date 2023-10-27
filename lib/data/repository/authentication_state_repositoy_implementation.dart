@@ -17,9 +17,13 @@ class AuthenticationStateRepositoryImplementation
       _authenticationDataSource.isAuthenticated;
 
   @override
-  Future<Either<AuthenticationFailure, Unit>> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
+  Future<Either<AuthenticationFailure, void>> signOut() async {
+    try {
+      final voidResult = await _authenticationDataSource.signOut();
+      return Right(voidResult);
+    } on Exception {
+      return Left(AuthenticationFailure());
+    }
   }
 
   @override
