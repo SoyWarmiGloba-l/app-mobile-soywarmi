@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "693678915726",
+    "project_id": "soywarmi-e1add",
+    "storage_bucket": "soywarmi-e1add.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693678915726:android:7946a2dfa34ff189e2c9df",
+        "android_client_info": {
+          "package_name": "com.example.soywarmi_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "693678915726-i9k8ht1rfom564ofquk92cgb0qrh0hn5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8h9Lb1Y8MmRkZr0Rlu7HCbvvwtQCwCMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "693678915726-i9k8ht1rfom564ofquk92cgb0qrh0hn5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "693678915726-lnlq2f8fssgfmh4ms4h87sh5g89kpkbj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.soywarmiApp.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693678915726:android:bb6eef07335002b4e2c9df",
+        "android_client_info": {
+          "package_name": "com.soywarmi.appname"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "693678915726-igddenuua75rq1m3cuirr8gk36m3g6jb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.soywarmi.appname",
+            "certificate_hash": "c9e9896bc58ef0163781ed6feb459ff06e46f85f"
+          }
+        },
+        {
+          "client_id": "693678915726-i9k8ht1rfom564ofquk92cgb0qrh0hn5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8h9Lb1Y8MmRkZr0Rlu7HCbvvwtQCwCMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "693678915726-i9k8ht1rfom564ofquk92cgb0qrh0hn5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "693678915726-lnlq2f8fssgfmh4ms4h87sh5g89kpkbj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.soywarmiApp.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

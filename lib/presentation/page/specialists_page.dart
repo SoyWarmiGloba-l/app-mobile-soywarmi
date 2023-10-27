@@ -17,7 +17,7 @@ class _SpecialistsPageState extends State<SpecialistsPage> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         const Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
           child: CustomTextField(
             label: 'Buscar.....',
             icon: Icons.search,
