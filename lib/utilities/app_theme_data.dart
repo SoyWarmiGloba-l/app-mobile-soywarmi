@@ -17,7 +17,7 @@ class AppThemeData {
     splashColor: NBColorWhite,
     secondaryHeaderColor: NBNotSelected,
     dividerColor: NBColorBlack,
-    fontFamily: GoogleFonts.cantoraOne().fontFamily,
+    fontFamily: GoogleFonts.lato().fontFamily,
     appBarTheme: const AppBarTheme(
       color: NBSecondPrimaryColor,
       iconTheme: IconThemeData(color: NBColorBlack),

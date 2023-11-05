@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:soywarmi_app/presentation/widget/custom_text_litle.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:soywarmi_app/utilities/nb_images.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -37,7 +38,7 @@ class _MapPageState extends State<MapPage> {
         ),
         Positioned(
           left: 0,
-          right: width * 0.7,
+          right: width * 0.6,
           bottom: 60,
           child: Padding(
             padding: const EdgeInsets.only(left: 10),
@@ -54,7 +55,7 @@ class _MapPageState extends State<MapPage> {
               onPressed: () {
                 _showCityModal(context);
               },
-              child: Text(
+              child: const Text(
                 'Cambiar ciudad',
                 style: TextStyle(fontSize: 10),
               ),
@@ -63,7 +64,7 @@ class _MapPageState extends State<MapPage> {
         ),
         Positioned(
           left: 0,
-          right: width * 0.7,
+          right: width * 0.6,
           bottom: 10,
           child: Padding(
             padding: const EdgeInsets.only(left: 10),
@@ -73,14 +74,14 @@ class _MapPageState extends State<MapPage> {
                     MaterialStateProperty.all<Color>(NBSecondPrimaryColor),
                 shape: MaterialStateProperty.all<OutlinedBorder>(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(20),
                   ),
                 ),
               ),
               onPressed: () {
                 _showModalNearestHospitalsl(context);
               },
-              child: Text(
+              child: const Text(
                 'Mostrar mas cercanos',
                 style: TextStyle(fontSize: 10),
               ),
@@ -108,10 +109,10 @@ void _showCityModal(BuildContext context) {
           builder: (context, constraints) {
             return SizedBox(
               height: constraints.maxHeight,
-              child: const Center(
+              child: Center(
                 child: Column(
                   children: [
-                    Align(
+                    const Align(
                       alignment: AlignmentDirectional.topCenter,
                       child: Padding(
                         padding: EdgeInsets.all(8),
@@ -122,6 +123,29 @@ void _showCityModal(BuildContext context) {
                             color: NBSecondPrimaryColor,
                           ),
                         ),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 20, right: 20),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text('La Paz'),
+                              const Spacer(),
+                              Checkbox(
+                                  value: false,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  onChanged: (value) {}),
+                            ],
+                          ),
+                          const Divider(
+                            thickness: 1,
+                          ),
+                        ],
                       ),
                     )
                   ],
@@ -151,10 +175,10 @@ void _showModalNearestHospitalsl(BuildContext context) {
           builder: (context, constraints) {
             return SizedBox(
               height: constraints.maxHeight,
-              child: const Center(
+              child: Center(
                 child: Column(
                   children: [
-                    Align(
+                    const Align(
                       alignment: AlignmentDirectional.topCenter,
                       child: Padding(
                         padding: EdgeInsets.all(8),
@@ -164,6 +188,27 @@ void _showModalNearestHospitalsl(BuildContext context) {
                             fontSize: 18,
                             color: NBSecondPrimaryColor,
                           ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 20, right: 20),
+                      decoration: BoxDecoration(
+                          color: NbSecondSecondaryColor,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: ListTile(
+                        leading: Image.asset('assets/images/hospital_icon.png'),
+                        title: Text(
+                          'Hospital 1',
+                          style:
+                              TextStyle(color: Theme.of(context).primaryColor),
+                        ),
+                        subtitle: Text(
+                          'Av Heroinas ',
+                          style: TextStyle(
+                              color: Theme.of(context)
+                                  .primaryColor
+                                  .withOpacity(0.5)),
                         ),
                       ),
                     )

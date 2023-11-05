@@ -50,7 +50,7 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           const CircleAvatar(
-                            radius: 30,
+                            radius: 35,
                             backgroundImage: AssetImage(NbImageEmpty),
                           ),
                           const SizedBox(width: 20),
@@ -130,7 +130,9 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                           withButton: ScreenSizeUtil.scaleWidth(0.9),
                         ),
                         CustomButtonMenu(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/about_us');
+                          },
                           label: 'Quienes somos',
                           color: Theme.of(context).primaryColor,
                           icon: Icons.question_mark,
@@ -177,6 +179,7 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                       ]),
                     ),
                   ),
+                  const SizedBox(height: 20),
                   Column(children: [
                     Image.asset(
                       NBWarmiLogo,

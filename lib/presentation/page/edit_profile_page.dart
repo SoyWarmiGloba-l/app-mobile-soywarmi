@@ -82,10 +82,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 const CustomTextTitle(
                   label: '¿Con que genero te edentificas?',
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                const Padding(
+                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                  child: Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: 10,
+                    runSpacing: 10,
                     children: [
                       GenderCard(
                         label: 'Masculino',
