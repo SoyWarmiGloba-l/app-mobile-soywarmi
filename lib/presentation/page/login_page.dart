@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soywarmi_app/data/remote/authenticator_firebase_remote_data_source.dart';
 import 'package:soywarmi_app/data/repository/authenticator_repository_implementation.dart';
-import 'package:soywarmi_app/domain/usescase/sign_in_usecase.dart';
+import 'package:soywarmi_app/domain/usescase/auth/sign_in_usecase.dart';
 import 'package:soywarmi_app/presentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:soywarmi_app/presentation/bloc/sign_in_cubit/sign_in_cubit.dart';
 import 'package:soywarmi_app/presentation/widget/custom_button.dart';

@@ -7,6 +7,23 @@ abstract class Failure extends Equatable {
 
 class GenericFailure extends Failure {}
 
+class DoctorFailure extends Failure {
+  DoctorFailure(this.message);
+  final String message;
+
+  @override
+  List<Object> get props => [message];
+}
+
+class TeamFailure extends Failure {
+  TeamFailure(this.message);
+  final String message;
+
+  @override
+  List<Object> get props => [message];
+}
+
+
 class AuthenticationFailure extends Failure {
   AuthenticationFailure([String? message])
       : message =

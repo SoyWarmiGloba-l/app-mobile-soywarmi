@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:soywarmi_app/core/failures.dart';
-import 'package:soywarmi_app/domain/usescase/sign_in_usecase.dart';
+import 'package:soywarmi_app/domain/usescase/auth/sign_in_usecase.dart';
 
 part 'sign_in_state.dart';
 

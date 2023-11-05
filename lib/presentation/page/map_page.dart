@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:soywarmi_app/data/remote/team_remote_data_source.dart';
 import 'package:soywarmi_app/presentation/widget/custom_text_litle.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
 
@@ -76,8 +77,11 @@ class _MapPageState extends State<MapPage> {
                   ),
                 ),
               ),
-              onPressed: () {
-                _showModalNearestHospitalsl(context);
+              onPressed: () async {
+                // _showModalNearestHospitalsl(context);
+                final implementation = TeamRemoteDataSourceImplementation();
+                final response = await implementation.getTeams();
+
               },
               child: const Text(
                 'Mostrar mas cercanos',

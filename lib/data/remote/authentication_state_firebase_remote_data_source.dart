@@ -48,8 +48,9 @@ class AuthenticationFirebaseRemoteDataSourceImplementation
   @override
   Future<UserModel?> get user async {
     final user = _firebaseAuth.currentUser;
+    print('User token ${ await user?.getIdToken()}');
     if (user != null) {
-      print('el usuario ya inicio sesion =================');
+      
       return UserModel(
         id: user.uid,
         email: user.email!,
@@ -57,7 +58,7 @@ class AuthenticationFirebaseRemoteDataSourceImplementation
         rol: '',
       );
     }
-    print('el usuario no inicio sesion =================');
+    
     return null;
   }
 }
