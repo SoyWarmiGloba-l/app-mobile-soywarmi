@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soywarmi_app/presentation/page/doctor_info_page.dart';
 import 'package:soywarmi_app/presentation/widget/custom_text_field.dart';
 import 'package:soywarmi_app/presentation/widget/doctor_card.dart';
 import 'package:soywarmi_app/utilities/nb_images.dart';
@@ -26,7 +27,12 @@ class _SpecialistsPageState extends State<SpecialistsPage> {
         DoctorCard(
           name: 'Juan Sebastian',
           specialty: 'Urologo',
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const DoctorInfoPage()));
+          },
           image: NbImageEmpty,
         ),
         DoctorCard(
