@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:soywarmi_app/presentation/widget/custom_text_litle.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
-import 'package:latlong2/latlong.dart';
+
 import 'package:soywarmi_app/utilities/nb_images.dart';
 
 class MapPage extends StatefulWidget {
@@ -13,8 +14,12 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  final MapController mapController = MapController();
-  LatLng default_position = LatLng(-17.419869, -66.129660);
+  late GoogleMapController mapController;
+  final default_position = LatLng(-17.419869, -66.129660);
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,20 +27,13 @@ class _MapPageState extends State<MapPage> {
     final height = MediaQuery.of(context).size.height;
     return Stack(
       children: [
-        FlutterMap(
-          mapController: mapController,
-          options: MapOptions(
-            minZoom: 13,
-            maxZoom: 18,
-            initialCenter: default_position,
-          ),
-          children: [
-            TileLayer(
-              urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-              userAgentPackageName: 'com.example.app',
-            ),
-          ],
-        ),
+        GoogleMap(
+          onMapCreated: _onMapCreated,
+          initialCameraPosition: 
+        const CameraPosition(target: 
+        LatLng(-17.419869, -66.129660)
+        , zoom: 18)),
+        
         Positioned(
           left: 0,
           right: width * 0.6,

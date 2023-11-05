@@ -8,6 +8,8 @@
         android:label="SoyWarmi"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDh_1bHnwwvHX4-Q8HAlYoqNiptBOswUM0"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
