@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
 import 'package:soywarmi_app/utilities/nb_images.dart';
 
@@ -19,11 +18,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
           color: NBSecondPrimaryColor,
           fontSize: 25,
           fontWeight: FontWeight.bold,
-          fontFamily: GoogleFonts.cantoraOne().fontFamily,
         ),
       ),
       actions: [
