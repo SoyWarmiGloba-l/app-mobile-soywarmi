@@ -32,8 +32,8 @@ class AuthenticationFirebaseRemoteDataSourceImplementation
 
   @override
   Future<void> sendPasswordResetEmail(String email) {
-    // TODO: implement sendPasswordResetEmail
-    throw UnimplementedError();
+    return _firebaseAuth.sendPasswordResetEmail(email: email);
+    
   }
 
   @override

@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:soywarmi_app/domain/entity/doctor_entity.dart';
-import 'package:soywarmi_app/presentation/widget/custom_text_litle.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
-import 'package:soywarmi_app/utilities/nb_images.dart';
 
 class DoctorInfoPage extends StatefulWidget {
   final DoctorEntity doctor;
-  const DoctorInfoPage({required this.doctor,super.key});
+  const DoctorInfoPage({required this.doctor, super.key});
 
   @override
   State<DoctorInfoPage> createState() => _DoctorInfoPageState();
@@ -31,7 +28,7 @@ class _DoctorInfoPageState extends State<DoctorInfoPage> {
         decoration: const BoxDecoration(color: NbSecondSecondaryColor),
         child: Column(
           children: [
-             Center(
+            Center(
               child: CircleAvatar(
                 radius: 45,
                 backgroundImage: NetworkImage(widget.doctor.photo),
@@ -104,18 +101,18 @@ class _DoctorInfoPageState extends State<DoctorInfoPage> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
-                          decoration: BoxDecoration(
-                            color: NbSecondSecondaryColor,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child:  Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              widget.doctor.specialty,
-                              style: const TextStyle(fontSize: 15),
-                            ),
-                          ),
+                      decoration: BoxDecoration(
+                        color: NbSecondSecondaryColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          widget.doctor.specialty,
+                          style: const TextStyle(fontSize: 15),
                         ),
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 10),
                   const Align(
@@ -162,7 +159,7 @@ class _DoctorInfoPageState extends State<DoctorInfoPage> {
                             color: NbSecondSecondaryColor,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child:  Padding(
+                          child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               widget.doctor.phone,
@@ -176,10 +173,10 @@ class _DoctorInfoPageState extends State<DoctorInfoPage> {
                             color: NbSecondSecondaryColor,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child:  Padding(
+                          child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                             widget.doctor.email,
+                              widget.doctor.email,
                               style: const TextStyle(fontSize: 15),
                             ),
                           ),

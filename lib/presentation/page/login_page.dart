@@ -44,7 +44,9 @@ class _LoginPageView extends StatefulWidget {
 }
 
 class __LoginPageViewState extends State<_LoginPageView> {
-  final formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
+  String _email = '';
+  String _password = '';
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -101,14 +103,35 @@ class __LoginPageViewState extends State<_LoginPageView> {
                     SizedBox(height: ScreenSizeUtil.scaleHeight(0.05)),
                     Center(
                       child: Form(
-                        key: formKey,
+                        key: _formKey,
                         child: Column(children: [
                           CustomTextField(
                             label: 'Correo',
+                            onSaved: (value) {
+                              _email = value!;
+                            },
+                            validator: (values) {
+                              if (values!.isEmpty) {
+                                
+                                return 'Por favor, introduce tu correo electronico';
+                              }
+                              return null;
+                            },
+                            type: TextInputType.emailAddress,
                             controller: emailController,
                           ),
                           CustomTextPassword(
                             label: 'Constraseña',
+                            type: TextInputType.visiblePassword,
+                            onSaved: (value) {
+                              _password = value!;
+                            },
+                            validator: (values) {
+                              if (values!.isEmpty) {
+                                return 'Por favor, introduce tu contraseña';
+                              }
+                              return null;
+                            },
                             controller: passwordController,
                           ),
                           Align(
@@ -132,11 +155,14 @@ class __LoginPageViewState extends State<_LoginPageView> {
                             child: CustomButton(
                               label: 'Iniciar sesión',
                               onPressed: () {
-                                context.read<SignInCubit>().signIn(
-                                      'email',
-                                      email: emailController.text,
-                                      password: passwordController.text,
-                                    );
+                                if (_formKey.currentState!.validate()) {
+                                  _formKey.currentState!.save();
+                                  context.read<SignInCubit>().signIn(
+                                        'email',
+                                        email: emailController.text,
+                                        password: passwordController.text,
+                                      );
+                                }
                               },
                             ),
                           ),
@@ -163,7 +189,11 @@ class __LoginPageViewState extends State<_LoginPageView> {
                               ),
                             ],
                           ),
-                          const GoogleButton(),
+                           GoogleButton(
+                            onPressed: (){
+                               BlocProvider.of<SignInCubit>(context).signIn('google');
+                            },
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

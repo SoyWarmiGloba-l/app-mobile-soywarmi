@@ -19,6 +19,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
             'Notificaciones',
             style: TextStyle(color: Theme.of(context).primaryColor),
           ),
+          centerTitle: false,
           leading: IconButton(
             onPressed: () {
               Navigator.pop(context);

@@ -29,12 +29,9 @@ class _MapPageState extends State<MapPage> {
     return Stack(
       children: [
         GoogleMap(
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: 
-        const CameraPosition(target: 
-        LatLng(-17.419869, -66.129660)
-        , zoom: 18)),
-        
+            onMapCreated: _onMapCreated,
+            initialCameraPosition: const CameraPosition(
+                target: LatLng(-17.419869, -66.129660), zoom: 18)),
         Positioned(
           left: 0,
           right: width * 0.6,
@@ -78,10 +75,8 @@ class _MapPageState extends State<MapPage> {
                 ),
               ),
               onPressed: () async {
-                // _showModalNearestHospitalsl(context);
-                final implementation = TeamRemoteDataSourceImplementation();
-                final response = await implementation.getTeams();
-
+                _showModalNearestHospitalsl(context);
+               
               },
               child: const Text(
                 'Mostrar mas cercanos',

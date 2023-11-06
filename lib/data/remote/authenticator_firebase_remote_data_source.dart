@@ -1,4 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 abstract class AuthenticatorFirebaseRemoteDataSource {
   AuthenticatorFirebaseRemoteDataSource()
@@ -39,9 +41,35 @@ class EmailAuthenticatorFirebaseRemoteDataSourceImplementation
 class GoogleAuthenticatorFirebaseRemoteDataSourceImplementation
     extends AuthenticatorFirebaseRemoteDataSource {
   @override
-  Future<void> signIn({String? email, String? password}) {
-    // TODO: implement signIn
-    throw UnimplementedError();
+  Future<void> signIn({String? email, String? password}) async {
+    try {
+      final googleSingIn = GoogleSignIn();
+      final googleAccount = await googleSingIn.signIn();
+
+      if (googleAccount == null) {
+        throw Exception('Error: Google sign-in was cancelled by the user');
+      }
+
+      final googleAuth = await googleAccount.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      final result = await _firebaseAuth.signInWithCredential(credential);
+      final user = result.user;
+    } catch (e) {
+      if (e is PlatformException && e.code == 'sign_in_canceled') {
+        throw Exception('Error: Google sign-in was cancelled by the user');
+      }
+
+      if (e is PlatformException) {
+        throw Exception('Platform exception code ${e.code} $e');
+      }
+
+      throw Exception('Error: Failed to sign in with Google $e');
+    }
   }
 
   @override

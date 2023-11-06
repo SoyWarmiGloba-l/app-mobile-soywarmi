@@ -56,7 +56,18 @@ class _SpecialistsPageState extends State<SpecialistsPage> {
               );
             }
             if (state is GetDoctorsError) {
-              return const Center(child: Text('No pudimos cargar los datos'));
+              return  Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Error al cargar los datos, intente nuevamente'),
+                  IconButton(
+                    onPressed: () {
+                      sl<GetDoctorCubit>().getDoctor();
+                    },
+                    icon:  Icon(Icons.refresh, color: Theme.of(context).primaryColor,),
+                  )
+                ],
+              );
             }
             return const Center(child: CircularProgressIndicator());
           },

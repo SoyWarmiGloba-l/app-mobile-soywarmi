@@ -44,4 +44,17 @@ class AuthenticationStateRepositoryImplementation
       return Left(AuthenticationFailure());
     }
   }
+  
+  @override
+  Future<Either<AuthenticationFailure, void>> sendPasswordResetEmail(String email)async {
+    try {
+
+      final res = await _authenticationDataSource.sendPasswordResetEmail(email);
+      return Right(res);
+      
+    }on Exception {
+      return Left(AuthenticationFailure('Error al enviar el correo de recuperación'));
+      
+    }
+  }
 }

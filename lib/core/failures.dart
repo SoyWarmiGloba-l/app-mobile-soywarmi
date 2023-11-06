@@ -23,7 +23,6 @@ class TeamFailure extends Failure {
   List<Object> get props => [message];
 }
 
-
 class AuthenticationFailure extends Failure {
   AuthenticationFailure([String? message])
       : message =
@@ -46,6 +45,10 @@ class AuthenticationFailure extends Failure {
       case 'wrong-password':
         return AuthenticationFailure(
           'La contraseña es incorrecta.',
+        );
+      case 'INVALID_LOGIN_CREDENTIALS':
+        return AuthenticationFailure(
+          'Credenciales inválidas.',
         );
       default:
         return AuthenticationFailure();

@@ -11,7 +11,7 @@ abstract class DoctorRemoteDataSource {
 class DoctorRemoteDataSourceImplementation extends DoctorRemoteDataSource {
   final _endPoint = dotenv.env['API_ENDPOINT'];
   final _userToken =
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3NveXdhcm1pLnJkYS1jb25zdWx0b3Jlcy5jb20vYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE2OTkxODYyNDgsImV4cCI6MTY5OTE4OTg0OCwibmJmIjoxNjk5MTg2MjQ4LCJqdGkiOiJOR2c1aWk0cVJMemtNZFBZIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.rtAnI4FUdTdRcQtXxPo4rWqIioaK12kaWSKugdcEMd0';
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3NveXdhcm1pLnJkYS1jb25zdWx0b3Jlcy5jb20vYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE2OTkyMDc3MjYsImV4cCI6MTY5OTIxMTMyNiwibmJmIjoxNjk5MjA3NzI2LCJqdGkiOiJYWEh5ZDFRWmV2MEk1SGs3Iiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.gy7Delsk4eMOF92_B5_rBFHbGs6nxZ0bN_YmRUpd89Y';
   @override
   Future<List<DoctorModel>> getDoctors() async {
     final req = await GetHttpHeader()
@@ -32,10 +32,10 @@ class DoctorRemoteDataSourceImplementation extends DoctorRemoteDataSource {
       }
     } else {
       throw Exception('Error al obtener los datos');
+      
     }
   }
 
-  // return [];
 }
 
 class GetHttpHeader {

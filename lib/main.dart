@@ -6,6 +6,7 @@ import 'package:soywarmi_app/firebase_options.dart';
 import 'package:soywarmi_app/presentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:soywarmi_app/presentation/page/about_us_page.dart';
 import 'package:soywarmi_app/presentation/page/edit_profile_page.dart';
+import 'package:soywarmi_app/presentation/page/frequent_asked_questions_page.dart';
 import 'package:soywarmi_app/presentation/page/main_page.dart';
 import 'package:soywarmi_app/presentation/page/login_page.dart';
 import 'package:soywarmi_app/presentation/page/new_post_page.dart';
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
           '/new_post': (context) => const NewPostPage(),
           '/notifications': (context) => const NotificationsPage(),
           '/about_us': (context) => const AboutUsPage(),
+          '/frequent_questions': (context) => const FrequentAskedQuestionsPage(),
         },
       ),
     );

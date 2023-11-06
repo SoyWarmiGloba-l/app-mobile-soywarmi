@@ -22,7 +22,6 @@ class DoctorRepositoryImplementation extends DoctorRepository {
               motherLastname: e.motherLastname,
               birthday: e.birthday,
               gender: e.gender,
-              phoneNumber: e.phone,
               specialty: e.specialty,
               university: e.university,
               email: e.email,
@@ -33,7 +32,7 @@ class DoctorRepositoryImplementation extends DoctorRepository {
               deletedAt: e.deletedAt))
           .toList();
       return Right(entityDoctors);
-    } on Exception {
+    } on Exception  {
       return Left(DoctorFailure('Error al obtener los doctores'));
     }
   }

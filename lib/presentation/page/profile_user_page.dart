@@ -148,7 +148,9 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                           withButton: ScreenSizeUtil.scaleWidth(0.9),
                         ),
                         CustomButtonMenu(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/frequent_questions');
+                          },
                           label: 'Preguntas frecuentes',
                           color: Theme.of(context).primaryColor,
                           icon: Icons.question_answer,

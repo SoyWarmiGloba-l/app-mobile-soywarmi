@@ -11,7 +11,6 @@ class DoctorEntity extends PersonEntity {
     required String motherLastname,
     required String birthday,
     required String gender,
-    required String phoneNumber,
     required String email,
     required String photo,
     required String phone,
