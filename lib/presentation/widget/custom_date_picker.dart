@@ -3,6 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
 
 class CustomDatePicker extends StatefulWidget {
+  const CustomDatePicker({super.key});
+
   @override
   _CustomDatePickerState createState() => _CustomDatePickerState();
 }

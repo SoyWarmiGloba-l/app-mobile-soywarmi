@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:soywarmi_app/presentation/widget/custom_text_litle.dart';
-import 'package:soywarmi_app/utilities/nb_colors.dart';
 
-import 'package:soywarmi_app/utilities/nb_images.dart';
+import 'package:soywarmi_app/utilities/nb_colors.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -28,12 +25,9 @@ class _MapPageState extends State<MapPage> {
     return Stack(
       children: [
         GoogleMap(
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: 
-        const CameraPosition(target: 
-        LatLng(-17.419869, -66.129660)
-        , zoom: 18)),
-        
+            onMapCreated: _onMapCreated,
+            initialCameraPosition: const CameraPosition(
+                target: LatLng(-17.419869, -66.129660), zoom: 18)),
         Positioned(
           left: 0,
           right: width * 0.6,
@@ -76,7 +70,7 @@ class _MapPageState extends State<MapPage> {
                   ),
                 ),
               ),
-              onPressed: () {
+              onPressed: () async {
                 _showModalNearestHospitalsl(context);
               },
               child: const Text(

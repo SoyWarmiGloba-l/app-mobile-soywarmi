@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:soywarmi_app/core/inyection_container.dart';
+import 'package:soywarmi_app/presentation/bloc/team/get_teams_cubit.dart';
+import 'package:soywarmi_app/presentation/bloc/team/get_teams_state.dart';
 import 'package:soywarmi_app/presentation/widget/custom_text_litle.dart';
 import 'package:soywarmi_app/presentation/widget/image_container.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
@@ -132,49 +136,65 @@ class _HomePageState extends State<HomePage> {
             left: 20,
           ),
           child: SizedBox(
-            height: 200,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: NbSecondSecondaryColor,
-                  ),
-                  width: MediaQuery.of(context).size.width * 0.45,
-                  margin: const EdgeInsets.only(right: 10),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          radius: 50,
-                          backgroundColor: Colors.white,
-                          backgroundImage: Image.asset(NbImageEmpty).image,
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          'Lita Perez',
-                          maxLines: 2,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(
-                                  fontWeight: FontWeight.bold, height: 1.5),
-                        ),
-                        const SizedBox(height: 5),
-                        Text('Voluntaria',
-                            style: Theme.of(context).textTheme.bodySmall),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
+              height: 220,
+              child: BlocBuilder<GetTeamsCubit, GetTeamsState>(
+                bloc: sl<GetTeamsCubit>()..getTeams(),
+                builder: (context, state) {
+                  if (state is GetTeamsError) {
+                    return const Center(
+                        child: Text(
+                            'No pudimos cargar los datos, vuelva a intentarlo'));
+                  }
+                  if (state is GetTeamsLoaded) {
+                    final members = state.members;
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: members.length > 10 ? 10 : members.length,
+                      itemBuilder: (context, index) {
+                        final member = members[index];
+                        return Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: NbSecondSecondaryColor,
+                          ),
+                          width: MediaQuery.of(context).size.width * 0.45,
+                          margin: const EdgeInsets.only(right: 10),
+                          child: InkWell(
+                            onTap: () {},
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CircleAvatar(
+                                    radius: 50,
+                                    backgroundColor: Colors.white,
+                                    backgroundImage:
+                                        Image.network(member.photo).image),
+                                const SizedBox(height: 10),
+                                Text(
+                                  member.name,
+                                  maxLines: 2,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          height: 1.5),
+                                ),
+                                const SizedBox(height: 5),
+                                Text('Voluntaria',
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }
+                  return const Center(child: CircularProgressIndicator());
+                },
+              )),
         ),
       ],
     );

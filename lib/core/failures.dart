@@ -7,6 +7,22 @@ abstract class Failure extends Equatable {
 
 class GenericFailure extends Failure {}
 
+class DoctorFailure extends Failure {
+  DoctorFailure(this.message);
+  final String message;
+
+  @override
+  List<Object> get props => [message];
+}
+
+class TeamFailure extends Failure {
+  TeamFailure(this.message);
+  final String message;
+
+  @override
+  List<Object> get props => [message];
+}
+
 class AuthenticationFailure extends Failure {
   AuthenticationFailure([String? message])
       : message =
@@ -29,6 +45,10 @@ class AuthenticationFailure extends Failure {
       case 'wrong-password':
         return AuthenticationFailure(
           'La contraseña es incorrecta.',
+        );
+      case 'INVALID_LOGIN_CREDENTIALS':
+        return AuthenticationFailure(
+          'Credenciales inválidas.',
         );
       default:
         return AuthenticationFailure();

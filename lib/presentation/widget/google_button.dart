@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:soywarmi_app/utilities/nb_images.dart';
 
 class GoogleButton extends StatelessWidget {
-  const GoogleButton({Key? key}) : super(key: key);
+
+  final void Function()? onPressed;
+  const GoogleButton({Key? key, this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class GoogleButton extends StatelessWidget {
         width: double.infinity,
         height: 50,
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: onPressed,
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.white,
             shape: RoundedRectangleBorder(

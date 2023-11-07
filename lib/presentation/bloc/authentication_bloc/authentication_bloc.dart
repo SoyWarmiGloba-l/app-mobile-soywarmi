@@ -3,8 +3,8 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:soywarmi_app/core/usecases.dart';
 import 'package:soywarmi_app/domain/entity/user_entity.dart';
-import 'package:soywarmi_app/domain/usescase/read_authentication_state_usecase.dart';
-import 'package:soywarmi_app/domain/usescase/sign_out_usecase.dart';
+import 'package:soywarmi_app/domain/usescase/auth/read_authentication_state_usecase.dart';
+import 'package:soywarmi_app/domain/usescase/auth/sign_out_usecase.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';

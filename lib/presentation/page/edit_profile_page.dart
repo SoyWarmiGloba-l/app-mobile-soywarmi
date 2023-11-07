@@ -5,7 +5,6 @@ import 'package:soywarmi_app/presentation/widget/custom_text_field.dart';
 import 'package:soywarmi_app/presentation/widget/custom_text_litle.dart';
 import 'package:soywarmi_app/presentation/widget/gender_card.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
-import 'package:soywarmi_app/utilities/nb_colors.dart';
 import 'package:soywarmi_app/utilities/nb_images.dart';
 
 class EditProfilePage extends StatefulWidget {
