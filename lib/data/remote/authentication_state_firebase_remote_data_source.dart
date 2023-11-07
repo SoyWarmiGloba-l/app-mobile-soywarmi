@@ -33,7 +33,6 @@ class AuthenticationFirebaseRemoteDataSourceImplementation
   @override
   Future<void> sendPasswordResetEmail(String email) {
     return _firebaseAuth.sendPasswordResetEmail(email: email);
-    
   }
 
   @override
@@ -48,9 +47,8 @@ class AuthenticationFirebaseRemoteDataSourceImplementation
   @override
   Future<UserModel?> get user async {
     final user = _firebaseAuth.currentUser;
-    print('User token ${ await user?.getIdToken()}');
+    print('User token ${await user?.getIdToken()}');
     if (user != null) {
-      
       return UserModel(
         id: user.uid,
         email: user.email!,
@@ -58,7 +56,7 @@ class AuthenticationFirebaseRemoteDataSourceImplementation
         rol: '',
       );
     }
-    
+
     return null;
   }
 }

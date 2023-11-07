@@ -8,7 +8,6 @@ import 'package:soywarmi_app/presentation/bloc/reset_password/reset_password_sta
 import 'package:soywarmi_app/presentation/widget/custom_button.dart';
 import 'package:soywarmi_app/presentation/widget/custom_text_field.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
-import 'package:soywarmi_app/utilities/nb_images.dart';
 import 'package:soywarmi_app/utilities/screen_size_util.dart';
 
 class PasswordResetPage extends StatefulWidget {

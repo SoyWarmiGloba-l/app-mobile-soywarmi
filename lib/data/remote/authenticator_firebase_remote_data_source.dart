@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:http/http.dart' as http;
 
 abstract class AuthenticatorFirebaseRemoteDataSource {
   AuthenticatorFirebaseRemoteDataSource()
@@ -15,6 +18,7 @@ abstract class AuthenticatorFirebaseRemoteDataSource {
 
 class EmailAuthenticatorFirebaseRemoteDataSourceImplementation
     extends AuthenticatorFirebaseRemoteDataSource {
+  final storage = const FlutterSecureStorage();
   @override
   Future<void> signIn({String? email, String? password}) async {
     if (email == null || password == null) {
@@ -25,6 +29,10 @@ class EmailAuthenticatorFirebaseRemoteDataSourceImplementation
       email: email,
       password: password,
     );
+
+    final userToken = await result.user!.getIdToken();
+
+    await storage.write(key: 'USER_TOKEN', value: userToken);
 
     if (result.user == null) {
       throw Exception('Error: User not found');
@@ -40,6 +48,7 @@ class EmailAuthenticatorFirebaseRemoteDataSourceImplementation
 
 class GoogleAuthenticatorFirebaseRemoteDataSourceImplementation
     extends AuthenticatorFirebaseRemoteDataSource {
+  final storage = const FlutterSecureStorage();
   @override
   Future<void> signIn({String? email, String? password}) async {
     try {
@@ -58,7 +67,9 @@ class GoogleAuthenticatorFirebaseRemoteDataSourceImplementation
       );
 
       final result = await _firebaseAuth.signInWithCredential(credential);
-      final user = result.user;
+
+      final userToken = await result.user!.getIdToken();
+      await storage.write(key: "USER_TOKEN", value: userToken);
     } catch (e) {
       if (e is PlatformException && e.code == 'sign_in_canceled') {
         throw Exception('Error: Google sign-in was cancelled by the user');
@@ -76,5 +87,17 @@ class GoogleAuthenticatorFirebaseRemoteDataSourceImplementation
   Future<void> signUp() {
     // TODO: implement signUp
     throw UnimplementedError();
+  }
+}
+
+class GetHttpHeader {
+  Future<http.Response> headerHttpWithToken(token, url) async {
+    http.Response req = await http.post(
+      Uri.parse(url),
+      headers: <String, String>{
+        "Authorization": 'Bearer $token',
+      },
+    );
+    return req;
   }
 }
