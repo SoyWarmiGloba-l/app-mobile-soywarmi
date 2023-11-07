@@ -6,7 +6,6 @@ import 'package:soywarmi_app/presentation/bloc/doctor/get_doctor_state.dart';
 import 'package:soywarmi_app/presentation/page/doctor_info_page.dart';
 import 'package:soywarmi_app/presentation/widget/custom_text_field.dart';
 import 'package:soywarmi_app/presentation/widget/doctor_card.dart';
-import 'package:soywarmi_app/utilities/nb_images.dart';
 
 class SpecialistsPage extends StatefulWidget {
   const SpecialistsPage({super.key});

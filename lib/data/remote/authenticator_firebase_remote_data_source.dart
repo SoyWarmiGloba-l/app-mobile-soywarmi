@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:http/http.dart' as http;
 
 abstract class AuthenticatorFirebaseRemoteDataSource {
   AuthenticatorFirebaseRemoteDataSource()
@@ -90,14 +88,3 @@ class GoogleAuthenticatorFirebaseRemoteDataSourceImplementation
   }
 }
 
-class GetHttpHeader {
-  Future<http.Response> headerHttpWithToken(token, url) async {
-    http.Response req = await http.post(
-      Uri.parse(url),
-      headers: <String, String>{
-        "Authorization": 'Bearer $token',
-      },
-    );
-    return req;
-  }
-}
