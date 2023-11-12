@@ -24,7 +24,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await dotenv.load(fileName: 'assets/config/.env');
-   await sl.init();
+  await sl.init();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -68,7 +68,8 @@ class MyApp extends StatelessWidget {
           '/new_post': (context) => const NewPostPage(),
           '/notifications': (context) => const NotificationsPage(),
           '/about_us': (context) => const AboutUsPage(),
-          '/frequent_questions': (context) => const FrequentAskedQuestionsPage(),
+          '/frequent_questions': (context) =>
+              const FrequentAskedQuestionsPage(),
         },
       ),
     );

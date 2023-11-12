@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soywarmi_app/utilities/nb_images.dart';
 
 class ImageContainer extends StatelessWidget {
   const ImageContainer({
@@ -22,6 +23,7 @@ class ImageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Container(
       height: height,
       width: width,
@@ -30,7 +32,9 @@ class ImageContainer extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         image: DecorationImage(
-          image: AssetImage(imageUrl),
+          image: imageUrl == ''
+              ? const AssetImage(NbLogoPost)
+              : NetworkImage(imageUrl) as ImageProvider,
           fit: BoxFit.cover,
         ),
       ),
