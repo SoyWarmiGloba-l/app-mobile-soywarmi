@@ -25,6 +25,7 @@ class _SpecialistsPageState extends State<SpecialistsPage> {
           child: CustomTextField(
             label: 'Buscar.....',
             icon: Icons.search,
+            colored: true,
           ),
         ),
         Expanded(

@@ -18,8 +18,7 @@ class FaqsRemoteDataSourceImplementation implements FaqsRemoteDataSource {
 
     if (req.statusCode == 200) {
       print('req.body ${req.body}');
-    }else 
-    {
+    } else {
       print('no hay datos');
     }
 

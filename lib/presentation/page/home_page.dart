@@ -57,7 +57,9 @@ class _HomePageState extends State<HomePage> {
                 const CustomTextTitle(label: 'Noticias de SoyWarmi'),
                 const Spacer(),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/news');
+                  },
                   child: const Text(
                     'Ver todo',
                     style: TextStyle(
@@ -137,7 +139,10 @@ class _HomePageState extends State<HomePage> {
                 const CustomTextTitle(label: 'Miembros'),
                 const Spacer(),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/members');
+                  
+                  },
                   child: const Text(
                     'Ver todo',
                     style: TextStyle(
