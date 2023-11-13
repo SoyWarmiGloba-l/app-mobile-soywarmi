@@ -9,7 +9,9 @@ import 'package:soywarmi_app/presentation/page/edit_profile_page.dart';
 import 'package:soywarmi_app/presentation/page/frequent_asked_questions_page.dart';
 import 'package:soywarmi_app/presentation/page/main_page.dart';
 import 'package:soywarmi_app/presentation/page/login_page.dart';
+import 'package:soywarmi_app/presentation/page/members_page.dart';
 import 'package:soywarmi_app/presentation/page/new_post_page.dart';
+import 'package:soywarmi_app/presentation/page/news_page.dart';
 import 'package:soywarmi_app/presentation/page/notifications_page.dart';
 import 'package:soywarmi_app/presentation/page/password_reset_page.dart';
 import 'package:soywarmi_app/presentation/page/profile_user_page.dart';
@@ -24,7 +26,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await dotenv.load(fileName: 'assets/config/.env');
-   await sl.init();
+  await sl.init();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -68,7 +70,10 @@ class MyApp extends StatelessWidget {
           '/new_post': (context) => const NewPostPage(),
           '/notifications': (context) => const NotificationsPage(),
           '/about_us': (context) => const AboutUsPage(),
-          '/frequent_questions': (context) => const FrequentAskedQuestionsPage(),
+          '/frequent_questions': (context) =>
+              const FrequentAskedQuestionsPage(),
+          '/members': (context) => const MembersPage(),
+          '/news' :(context) => const NewsPage(),
         },
       ),
     );
