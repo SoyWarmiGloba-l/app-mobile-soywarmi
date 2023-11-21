@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:soywarmi_app/presentation/widget/custom_button.dart';
 import 'package:soywarmi_app/presentation/widget/custom_text_field.dart';
 import 'package:soywarmi_app/presentation/widget/custom_text_password.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
 import 'package:soywarmi_app/utilities/nb_images.dart';
+
+import '../widget/custom_text_field_login.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -22,6 +25,11 @@ class _RegisterPage extends StatefulWidget {
 }
 
 class __RegisterPageState extends State<_RegisterPage> {
+  TextEditingController correo = TextEditingController();
+  TextEditingController nombre = TextEditingController();
+  TextEditingController apellido = TextEditingController();
+  TextEditingController contrasenia = TextEditingController();
+  TextEditingController confirmar_contrasenia = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,18 +54,25 @@ class __RegisterPageState extends State<_RegisterPage> {
                       color: NBPrimaryColor),
                 ),
                 const SizedBox(height: 10),
-                const CustomTextField(label: 'Correo'),
-                const CustomTextField(label: 'Nombre'),
-                const CustomTextField(label: 'Apellido'),
-                const CustomTextPassword(label: 'Contraseña'),
-                const CustomTextPassword(label: 'Confirmar contraseña'),
+                getTextFieldRegister(context,"Correo",correo),
+                getTextFieldRegister(context,"Nombre",nombre),
+                getTextFieldRegister(context,"Apellido",apellido),
+                getTextFieldPassowrdRegister(context,"Contrasenia",contrasenia),
+                getTextFieldPassowrdRegister(context,"Contrasenia",confirmar_contrasenia),
+
                 Padding(
                   padding: const EdgeInsets.only(
                     top: 20,
                   ),
                   child: CustomButton(
                     label: 'Crear cuenta',
-                    onPressed: () {},
+                    onPressed: () {
+                      if(correo.text=="" || nombre.text=="" || apellido.text=="" || contrasenia.text=="" || contrasenia.text=="" || contrasenia.text!=confirmar_contrasenia.text){
+
+                      }else{
+                        _register();
+                      }
+                    },
                   ),
                 ),
                 const SizedBox(height: 15),
@@ -87,5 +102,20 @@ class __RegisterPageState extends State<_RegisterPage> {
             )),
       )),
     );
+  }
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  Future<void> _register() async {
+    try {
+      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+        email: correo.text,
+        password: contrasenia.text,
+      );
+      print('Usuario registrado: ${userCredential.user?.uid}');
+
+      Navigator.pushNamed(context, '/home');
+
+    } on FirebaseAuthException catch (e) {
+      print('Error al registrar usuario: $e');
+    }
   }
 }
