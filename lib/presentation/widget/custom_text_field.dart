@@ -13,6 +13,7 @@ class CustomTextField extends StatelessWidget {
     this.type = TextInputType.text,
     this.validator,
     this.onSaved,
+    this.colored = false,
   });
   final String label;
   final TextEditingController? controller;
@@ -22,6 +23,7 @@ class CustomTextField extends StatelessWidget {
   final bool enabled;
   final TextInputType type;
   final String? Function(String?)? validator;
+  final bool colored;
   final void Function(String?)? onSaved;
 
   @override
@@ -35,7 +37,7 @@ class CustomTextField extends StatelessWidget {
         keyboardType: type,
         decoration: InputDecoration(
           filled: true,
-          fillColor: NbSecondSecondaryColor,
+          fillColor: colored ? NbSecondSecondaryColor : null,
           labelText: label,
           labelStyle: TextStyle(
             color: Theme.of(context).primaryColor.withOpacity(0.6),

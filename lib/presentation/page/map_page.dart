@@ -1,5 +1,14 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:soywarmi_app/core/inyection_container.dart';
+import 'package:soywarmi_app/data/remote/faqs_remote_data_source.dart';
+import 'package:soywarmi_app/data/remote/medical_center_remote_data_source.dart';
+import 'package:soywarmi_app/data/remote/news_remote_data_source.dart';
+import 'package:soywarmi_app/presentation/bloc/medical_centers/get_medical_centers_cubit.dart';
+import 'package:soywarmi_app/presentation/bloc/medical_centers/get_medical_centers_state.dart';
 
 import 'package:soywarmi_app/utilities/nb_colors.dart';
 
@@ -22,65 +31,91 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    return Stack(
-      children: [
-        GoogleMap(
-            onMapCreated: _onMapCreated,
-            initialCameraPosition: const CameraPosition(
-                target: LatLng(-17.419869, -66.129660), zoom: 18)),
-        Positioned(
-          left: 0,
-          right: width * 0.6,
-          bottom: 60,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(NBSecondPrimaryColor),
-                shape: MaterialStateProperty.all<OutlinedBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+    return BlocBuilder<GetMedicalCentersCubit, GetMedicalCentersState>(
+      bloc: sl<GetMedicalCentersCubit>()..getMedicalCenters(),
+      builder: (context, state) {
+        if (state is GetMedicalCentersLoaded) {
+          final medicalCenters = state.medicalCenters;
+          final markers = medicalCenters.map((e) {
+            final LatLng position = LatLng(e.latitude, e.longitude);
+            return Marker(
+              markerId: MarkerId(e.id.toString()),
+              position: position,
+              infoWindow: InfoWindow(
+                title: e.name,
+              ),
+            );
+          }).toSet();
+          return Stack(
+            children: [
+              GoogleMap(
+                  onMapCreated: _onMapCreated,
+                  markers: markers,
+                  initialCameraPosition: const CameraPosition(
+                      target: LatLng(-64.357902, -33.797913), zoom: 18)),
+              Positioned(
+                left: 0,
+                right: width * 0.6,
+                bottom: 60,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          NBSecondPrimaryColor),
+                      shape: MaterialStateProperty.all<OutlinedBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                    ),
+                    onPressed: () async {
+                      // _showCityModal(context);
+                      final res = FaqsRemoteDataSourceImplementation();
+                      final data = res.getFaqs();
+                    },
+                    child: const Text(
+                      'Cambiar ciudad',
+                      style: TextStyle(fontSize: 10),
+                    ),
                   ),
                 ),
               ),
-              onPressed: () {
-                _showCityModal(context);
-              },
-              child: const Text(
-                'Cambiar ciudad',
-                style: TextStyle(fontSize: 10),
-              ),
-            ),
-          ),
-        ),
-        Positioned(
-          left: 0,
-          right: width * 0.6,
-          bottom: 10,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(NBSecondPrimaryColor),
-                shape: MaterialStateProperty.all<OutlinedBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+              Positioned(
+                left: 0,
+                right: width * 0.6,
+                bottom: 10,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          NBSecondPrimaryColor),
+                      shape: MaterialStateProperty.all<OutlinedBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                    ),
+                    onPressed: () async {
+                      _showModalNearestHospitalsl(context);
+                    },
+                    child: const Text(
+                      'Mostrar mas cercanos',
+                      style: TextStyle(fontSize: 10),
+                    ),
                   ),
                 ),
-              ),
-              onPressed: () async {
-                _showModalNearestHospitalsl(context);
-              },
-              child: const Text(
-                'Mostrar mas cercanos',
-                style: TextStyle(fontSize: 10),
-              ),
-            ),
-          ),
-        )
-      ],
+              )
+            ],
+          );
+        }
+
+        if (state is GetMedicalCentersError) {
+          return const Center(child: Text('Error'));
+        }
+        return const Center(child: CircularProgressIndicator());
+      },
     );
   }
 }
