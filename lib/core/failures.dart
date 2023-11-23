@@ -37,7 +37,16 @@ class NewsFailure extends Failure {
   @override
   List<Object> get props => [message];
 }
+class RegisterFailure extends Failure {
+  RegisterFailure([String? message])
+      : message =
+      message ?? 'Ha ocurrido un error inesperado, inténtelo de nuevo.';
+  final String message;
 
+  @override
+  List<Object> get props => [message];
+
+}
 class AuthenticationFailure extends Failure {
   AuthenticationFailure([String? message])
       : message =

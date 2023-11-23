@@ -8,6 +8,12 @@ Widget getTextFieldRegister(BuildContext context,String label,TextEditingControl
     child: TextFormField(
       controller: controller,
       obscureText: false,
+      validator: (values){
+        if(values!.isEmpty){
+          return 'Llena el campo';
+        }
+        return null;
+      },
       decoration: InputDecoration(
         filled: true,
         labelText: label,

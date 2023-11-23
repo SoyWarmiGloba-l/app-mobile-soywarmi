@@ -74,4 +74,6 @@ Future<void> init() async {
       GetMedicalCentersCubit(getMedicalCentersUseCase: sl()));
 
   sl.registerSingleton<GetNewsCubit>( GetNewsCubit(getNewsUseCase: sl()));
+
+  
 }
