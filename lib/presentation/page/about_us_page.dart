@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soywarmi_app/utilities/nb_images.dart';
 
 import '../../utilities/nb_colors.dart';
 
@@ -11,10 +12,29 @@ class AboutUsPage extends StatefulWidget {
 
 class _AboutUsPageState extends State<AboutUsPage> {
   final List<Item> _listaItems=[
-    Item(title: "Mision",expanded: "Empoderamos a individuos para vivir vidas auténticas y plenas al proporcionar orientación sexual inclusiva, recursos educativos y apoyo emocional. Nos esforzamos por crear un mundo donde todas las personas puedan explorar, entender y celebrar su identidad sexual de manera segura y libre de discriminación. Trabajamos para fomentar la aceptación, la comprensión y el respeto mutuo, promoviendo así comunidades más equitativas y compasivas",isExpanded: false),
+    Item(title: "Mision",expanded: "Somos Soy Warmi, una organización juvenil sin fines de lucro conformada dedicada a promover la educación sexual integral. Desarrolladores del proyecto Warmi Ambassadors. Nuestra misión es romper tabúes y prevenir enfermedades de transmisión sexual, así como embarazos no deseados. Trabajamos para empoderar a las comunidades vulnerables, especialmente en zonas rurales de América Latina.",isExpanded: false),
     Item(title: "Valores",expanded: ["Inclusividad: Creemos en la diversidad de las experiencias sexuales y de género y nos esforzamos por ser una organización inclusiva que acoge a todas las personas, independientemente de su identidad o orientación sexual.", "Respeto: Valoramos y respetamos la autonomía y la dignidad de cada individuo. Buscamos crear un entorno donde todos se sientan seguros para expresar su identidad y orientación sexual sin temor al juicio o la discriminación.", "Educación: Abogamos por la educación como herramienta fundamental para la comprensión y la aceptación. Proporcionamos recursos educativos basados en evidencia para aumentar la conciencia y desafiar los estigmas asociados con diversas orientaciones sexuales."],isExpanded: false),
-    Item(title: "Equipo",expanded: [Miembro(nombre: "Sujeto 1",ocupacion: "Administrador de empresas",responsabilidad: "Administrador",foto: "assets/images/miembro.jpg"),Miembro(nombre: "Sujeto 1",ocupacion: "Administrador de empresas",responsabilidad: "Abogado",foto: "assets/images/miembro.jpg")],isExpanded: false),
-    Item(title: "Aliados",expanded: [Aliado(nombre: "Organizacion 1", foto: "assets/images/aliado.jpg"),Aliado(nombre: "Organizacion 1", foto: "assets/images/aliado.jpg")],isExpanded: false),
+    Item(
+        title: "Equipo",
+        expanded: [
+          Miembro(nombre: "Valentina Wiñay Quispe",ocupacion: "¡Hola! Soy Vale de Bolivia, Aymara, activista por la equidad de género y promotora de la ESI.",foto: Images.NBWarmiLogo),
+          Miembro(nombre: "Arly Carrillo Plasencia",ocupacion: "¡Hola! Soy Arly de Lima, Perú. Una líder altruista y perspicaz que le apasiona la justicia social y el activismo por la educación de calidad en todas las áreas de conocimiento.",foto: Images.imgMemberArlyCarrillo),
+          Miembro(nombre: "Fernanda",ocupacion: "¡Hola! Soy Fernanda de La Paz, Bolivia. Apasionada por la lectura y los negocios, busco impulsar el empoderamiento económico y la expansión de oportunidades comerciales para las mujeres.",foto: Images.imgMemberFernanda),
+          Miembro(nombre: "Nicole Nahomi Yañez Vasquez",ocupacion: " ¡Hola! Soy Nicole, de La Paz, Bolivia. Soy una activista enamorada del ambientalismo y de la justicia climática pero en especial del reciclaje.",foto: Images.imgMemberNicoleYaniez),
+          Miembro(nombre: "Hilary",ocupacion: "Hola, soy Hilary! Soy una estudiante de Lima, Perú, me apasiona formar parte de voluntariados y crear lazos con los que lo conforman.",foto: Images.imgMemberHilary),
+          Miembro(nombre: "Diego",ocupacion: "Hola, soy Diego! Soy una persona apasionada por la música y el voluntariado, sueño con que el mundo sea un lugar mejor para las siguientes generaciones.",foto: Images.imgMemberDiego),
+          Miembro(nombre: "Alan Sandi",ocupacion: "Soy Alan Sandi, tengo 19 años y soy estudiante de Derecho, orientando mis esfuerzos para la deconstrucción hacia una sociedad más tolerante y diversa.",foto: Images.imgMemberAlanSandi),
+          Miembro(nombre: "Mari",ocupacion: "Hola a todes, soy Mari, soy una acuariana que ama compartir un pedacito de alma, vida y corazón con sus personas especiales y a causas que valen la pena.",foto: Images.imgMemberMary),
+        ],
+        isExpanded: false),
+
+    Item(
+        title: "Aliados",
+        expanded: [
+          Aliado(nombre: "Embajada USA",descripcion: "Reconocidos como uno de los proyectos impulsados por la Embajada de USA.", foto: Images.img_usa_allie),
+          Aliado(nombre: "Pollination Project",descripcion: "Ganadores del premio de The Pollination Project.", foto: Images.img_pollination_p_allie),
+          Aliado(nombre: "World learning",descripcion: "Impulsados por World Learning.", foto: Images.img_world_l_allie)
+        ],isExpanded: false),
   ];
   @override
   Widget build(BuildContext context) {
@@ -42,7 +62,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
               Container(
                 margin: EdgeInsets.only(bottom: 20),
                 padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Image.asset("assets/images/logo.png"),
+                child: Image.asset(Images.logo),
               ),
               Container(
                 margin: EdgeInsets.only(bottom: 40),
@@ -129,7 +149,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Image.asset(value.foto),
+                          Container(decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),child: Image.asset(value.foto,height: 150),),
                           Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: Column(
@@ -140,9 +160,6 @@ class _AboutUsPageState extends State<AboutUsPage> {
                                 Text(value.ocupacion,style: TextStyle(fontSize:14,color: Theme.of(context)
                                     .primaryColorDark
                                     .withOpacity(0.5))),
-                                Text(value.responsabilidad,style: TextStyle(fontSize:14,color: Theme.of(context)
-                                    .primaryColorDark
-                                    .withOpacity(0.5)))
                               ],
                             ),
                           )
@@ -158,17 +175,15 @@ class _AboutUsPageState extends State<AboutUsPage> {
                 child: Column(
                   children: (item.expanded as List<Aliado>).map((value) {
                     return Card(
-                      child: Padding(
+                      child: Container(
+                        width: double.infinity,
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.asset(value.foto),
-                            ),
-                            Text(value.nombre,style: TextStyle(color: Theme.of(context)
+                            Container(padding:const EdgeInsets.only(bottom: 10),decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),child: Image.asset(value.foto,height: 150),),
+                            Text(value.descripcion,style: TextStyle(color: Theme.of(context)
                                 .primaryColorDark
                                 .withOpacity(0.5)),),
                           ],
@@ -205,13 +220,13 @@ class Item{
 }
 class Miembro{
   String nombre;
-  String responsabilidad;
   String ocupacion;
   String foto;
-  Miembro({required this.nombre,required this.responsabilidad,required this.ocupacion,required this.foto});
+  Miembro({required this.nombre,required this.ocupacion,required this.foto});
 }
 class Aliado{
   String nombre;
+  String descripcion;
   String foto;
-  Aliado({required this.nombre,required this.foto});
+  Aliado({required this.nombre,required this.descripcion,required this.foto});
 }
