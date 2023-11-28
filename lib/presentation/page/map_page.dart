@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:soywarmi_app/core/inyection_container.dart';
+import 'package:soywarmi_app/data/remote/activity_remote_data_source.dart';
 import 'package:soywarmi_app/data/remote/faqs_remote_data_source.dart';
 import 'package:soywarmi_app/data/remote/medical_center_remote_data_source.dart';
 import 'package:soywarmi_app/data/remote/news_remote_data_source.dart';
@@ -71,8 +72,8 @@ class _MapPageState extends State<MapPage> {
                     ),
                     onPressed: () async {
                       // _showCityModal(context);
-                      final res = FaqsRemoteDataSourceImplementation();
-                      final data = res.getFaqs();
+                      final res = ActivityRemoteDataSourceImplementation();
+                      final data = res.getActivities();
                     },
                     child: const Text(
                       'Cambiar ciudad',

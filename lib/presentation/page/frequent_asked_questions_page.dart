@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:soywarmi_app/core/inyection_container.dart';
+import 'package:soywarmi_app/presentation/bloc/faqs/get_faqs_cubit.dart';
+import 'package:soywarmi_app/presentation/bloc/faqs/get_faqs_state.dart';
+import 'package:soywarmi_app/utilities/nb_colors.dart';
 
 class FrequentAskedQuestionsPage extends StatefulWidget {
   const FrequentAskedQuestionsPage({super.key});
 
   @override
-  State<FrequentAskedQuestionsPage> createState() => _FrequentAskedQuestionsPageState();
+  State<FrequentAskedQuestionsPage> createState() =>
+      _FrequentAskedQuestionsPageState();
 }
 
-class _FrequentAskedQuestionsPageState extends State<FrequentAskedQuestionsPage> {
+class _FrequentAskedQuestionsPageState
+    extends State<FrequentAskedQuestionsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +31,80 @@ class _FrequentAskedQuestionsPageState extends State<FrequentAskedQuestionsPage>
             Navigator.pop(context);
           },
           icon: Icon(Icons.arrow_back, color: Theme.of(context).primaryColor),
+        ),
+      ),
+      body: Container(
+        margin: const EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 15),
+        child: Column(
+          children: [
+            const SizedBox(height: 10),
+            const Center(
+              child: Text(
+                '¿Tienes preguntas?',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Expanded(
+              child: BlocBuilder<GetFaqsCubit, GetFaqsState>(
+                bloc: sl<GetFaqsCubit>()..getFaqs(),
+                builder: (context, state) {
+                  if (state is GetFaqsLoaded) {
+                    final faqs = state.faqs;
+                    return ListView.builder(
+                      itemCount: faqs.length,
+                      itemBuilder: (context, index) {
+                        final faq = faqs[index];
+
+                        return Container(
+                          width: double.infinity ,
+                          margin: const EdgeInsets.only(bottom: 10),
+                          
+                          decoration:const BoxDecoration(
+                            color: NbSecondSecondaryColor,
+                          ),
+                          
+                          child: ExpansionTile(
+                            iconColor: Colors.black,
+                            collapsedIconColor: Colors.black,
+                            
+                            title: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                faq.question,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  faq.answer,
+                                  style: const TextStyle(fontSize: 14),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  }
+
+                  if (state is GetFaqsError) {
+                    return Center(child: Text(state.message));
+                  }
+
+                  return const Center(child: CircularProgressIndicator());
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

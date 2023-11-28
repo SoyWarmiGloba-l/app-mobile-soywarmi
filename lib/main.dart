@@ -5,6 +5,7 @@ import 'package:soywarmi_app/core/inyection_container.dart' as sl;
 import 'package:soywarmi_app/firebase_options.dart';
 import 'package:soywarmi_app/presentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:soywarmi_app/presentation/page/about_us_page.dart';
+import 'package:soywarmi_app/presentation/page/activities_page.dart';
 import 'package:soywarmi_app/presentation/page/edit_profile_page.dart';
 import 'package:soywarmi_app/presentation/page/frequent_asked_questions_page.dart';
 import 'package:soywarmi_app/presentation/page/main_page.dart';
@@ -74,6 +75,7 @@ class MyApp extends StatelessWidget {
               const FrequentAskedQuestionsPage(),
           '/members': (context) => const MembersPage(),
           '/news' :(context) => const NewsPage(),
+          '/activity' :(context) => const ActivitiesPage(),
         },
       ),
     );

@@ -119,6 +119,7 @@ class __LoginPageViewState extends State<_LoginPageView> {
                             },
                             type: TextInputType.emailAddress,
                             controller: emailController,
+                            colored: true,
                           ),
                           CustomTextPassword(
                             label: 'Constraseña',

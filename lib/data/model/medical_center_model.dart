@@ -42,7 +42,7 @@ class MedicalCenterModel extends Equatable {
       createdAt: json['created_at'] as String,
       updatedAt: json['updated_at'] as String,
       deletedAt: (json['deleted_at'] ?? '') as String,
-     medicalServices: (json['medical_services'] as List) ?? [],
+      medicalServices: (json['medical_services'] as List) ?? [],
     );
   }
 
