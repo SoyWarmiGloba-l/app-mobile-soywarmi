@@ -38,15 +38,17 @@ class ActivityModel extends Equatable {
     final areas =jsonDecode(json['area']);
     final requirements = jsonDecode(json['requirement']) ;
 
+    print('steps: $steps, areas: $areas, requirements: $requirements');
+
     return ActivityModel(
       id: json['id'] as int,
       eventTypeId: json['event_type_id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
       endDate: json['end_date'] as String,
-      step: [],
-      area: [],
-      requirement: [],
+      step: const ['Estar registrado en la plataforma', 'Tener 18 años'],
+      area: const ['Cultura', 'Deporte', 'Educación', 'Salud'],
+      requirement: const ['Cédula de ciudadanía', 'Certificado de residencia'],
       createdAt: DateTime.parse(json['created_at'] as String),
       updatedAt: DateTime.parse(json['updated_at'] as String),
       deletedAt: json['deleted_at'] != null

@@ -60,21 +60,22 @@ class _AboutUsPageState extends State<AboutUsPage> {
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.only(bottom: 20),
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                margin: const EdgeInsets.only(bottom: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Image.asset(Images.logo),
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 40),
+                margin: const EdgeInsets.only(bottom: 40),
                 child: Text("Soy Warmi es una organizacion dedicada a promover la Educacion en Sexualidad Integral (ESI) en jóvenes en Bolivia",style:TextStyle(                                        fontSize: 14,
                     color: Theme.of(context)
                         .primaryColorDark
                         .withOpacity(0.5)),),
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 40),
+                margin: const EdgeInsets.only(bottom: 40),
                 child: _aboutUsExpasionPanel(),
               ),
+             const SizedBox(height: 100,),
               Container(
                 child: Column(children: [
                   Text(

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ffi';
 
 import 'package:equatable/equatable.dart';
@@ -32,6 +33,8 @@ class NewsModel extends Equatable {
   });
 
   factory NewsModel.fromJson(Map<String, dynamic> json) {
+    final areas = jsonDecode(json['areas'] as String) ;
+    
   return NewsModel(
     id: json['id'] as int,
     eventTypeId: json['event_type_id'] as String,
@@ -40,9 +43,7 @@ class NewsModel extends Equatable {
     image: json['image'] ?? '',
     startDate: json['start_date'] as String,
     endDate: json['end_date'] as String,
-    areas: (json['areas'] is List)
-        ? List<String>.from(json['areas'] as List)
-        : [json['areas'] as String],
+    areas: areas.cast<String>(),
     createdAt: DateTime.parse(json['created_at'] as String),
     updatedAt: DateTime.parse(json['updated_at'] as String),
     deletedAt: json['deleted_at'] != null

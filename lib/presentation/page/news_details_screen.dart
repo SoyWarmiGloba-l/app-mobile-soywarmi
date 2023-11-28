@@ -30,7 +30,8 @@ class NewsDetailsScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: news.image == ''
-                        ? const NetworkImage('https://source.unsplash.com/random/800x600/?news')
+                        ? const NetworkImage(
+                            'https://source.unsplash.com/random/800x600/?news')
                         : NetworkImage(news.image) as ImageProvider,
                     fit: BoxFit.cover,
                   ),
@@ -50,25 +51,51 @@ class NewsDetailsScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      'Fecha de inicio: ${news.startDate}',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Fecha de fin: ${news.endDate}',
+                      'Publicacion: ${news.startDate}',
                       style: const TextStyle(
                         fontSize: 16,
                         color: Colors.grey,
                       ),
                     ),
                     const SizedBox(height: 16),
+                    const Text(
+                      'Descripcion:',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    const SizedBox(height: 8),
                     Text(
                       news.description,
                       style: const TextStyle(fontSize: 16),
                     ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'Categoria:',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                        spacing: 8,
+                        children: news.areas
+                            .map((e) => Container(
+                                  margin: const EdgeInsets.only(
+                                      right: 8, bottom: 8),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 4),
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context).primaryColor,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      e,
+                                      style: const TextStyle(
+                                        color: NBColorWhite,
+                                      ),
+                                    ),
+                                  ),
+                                ))
+                            .toList()),
                   ],
                 ),
               ),

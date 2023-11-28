@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:soywarmi_app/domain/entity/medical_center_entity.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 class MedicalCenterInfo extends StatefulWidget {
   const MedicalCenterInfo({super.key, required this.medicalCenter});
@@ -14,6 +16,8 @@ class MedicalCenterInfo extends StatefulWidget {
 class _MedicalCenterInfoState extends State<MedicalCenterInfo> {
   @override
   Widget build(BuildContext context) {
+
+    final formatTime = DateFormat('HH:mm');
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -166,10 +170,15 @@ class _MedicalCenterInfoState extends State<MedicalCenterInfo> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                widget.medicalCenter.openingDate,
+                                '${formatTime.format(DateTime.parse(widget.medicalCenter.closingDate))}am ',
                                 style: const TextStyle(fontSize: 15),
                               ),
                             ),
+                          ),
+                          const SizedBox(width: 10),
+                          const Text(
+                            'a',
+                            style: TextStyle(fontSize: 15),
                           ),
                           const SizedBox(width: 10),
                           Container(
@@ -180,7 +189,7 @@ class _MedicalCenterInfoState extends State<MedicalCenterInfo> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                widget.medicalCenter.closingDate,
+                                '${formatTime.format(DateTime.parse(widget.medicalCenter.openingDate))}pm',
                                 style: const TextStyle(fontSize: 15),
                               ),
                             ),

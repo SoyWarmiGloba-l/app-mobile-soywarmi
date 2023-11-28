@@ -4,6 +4,7 @@ import 'package:soywarmi_app/core/inyection_container.dart';
 import 'package:soywarmi_app/presentation/bloc/faqs/get_faqs_cubit.dart';
 import 'package:soywarmi_app/presentation/bloc/faqs/get_faqs_state.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
+import 'package:soywarmi_app/utilities/nb_images.dart';
 
 class FrequentAskedQuestionsPage extends StatefulWidget {
   const FrequentAskedQuestionsPage({super.key});
@@ -23,7 +24,7 @@ class _FrequentAskedQuestionsPageState
         centerTitle: true,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
-          'Preguntas frecuentes',
+          'FAQs',
           style: TextStyle(color: Theme.of(context).primaryColor),
         ),
         leading: IconButton(
@@ -38,6 +39,7 @@ class _FrequentAskedQuestionsPageState
         child: Column(
           children: [
             const SizedBox(height: 10),
+            Image.asset(Images.logo, height: 50, width: 150),
             const Center(
               child: Text(
                 '¿Tienes preguntas?',
@@ -47,7 +49,7 @@ class _FrequentAskedQuestionsPageState
                 ),
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             Expanded(
               child: BlocBuilder<GetFaqsCubit, GetFaqsState>(
                 bloc: sl<GetFaqsCubit>()..getFaqs(),
@@ -60,17 +62,18 @@ class _FrequentAskedQuestionsPageState
                         final faq = faqs[index];
 
                         return Container(
-                          width: double.infinity ,
+                          width: double.infinity,
                           margin: const EdgeInsets.only(bottom: 10),
-                          
-                          decoration:const BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: NbSecondSecondaryColor,
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
                           ),
-                          
                           child: ExpansionTile(
                             iconColor: Colors.black,
                             collapsedIconColor: Colors.black,
-                            
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
                             title: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
@@ -83,7 +86,7 @@ class _FrequentAskedQuestionsPageState
                             ),
                             children: [
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(15),
                                 child: Text(
                                   faq.answer,
                                   style: const TextStyle(fontSize: 14),
