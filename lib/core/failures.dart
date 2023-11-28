@@ -23,6 +23,22 @@ class TeamFailure extends Failure {
   List<Object> get props => [message];
 }
 
+class ActivityFailure extends Failure {
+  ActivityFailure(this.message);
+  final String message;
+
+  @override
+  List<Object> get props => [message];
+}
+
+class FaqsFailure extends Failure {
+  FaqsFailure(this.message);
+  final String message;
+
+  @override
+  List<Object> get props => [message];
+}
+
 class MedicalCenterFailure extends Failure {
   MedicalCenterFailure(this.message);
   final String message;

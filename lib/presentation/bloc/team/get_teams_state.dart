@@ -3,6 +3,7 @@ import 'package:soywarmi_app/domain/entity/member_entity.dart';
 
 abstract class GetTeamsState extends Equatable {
   const GetTeamsState();
+  List<MemberEntity>? get members => [];
 
   @override
   List<Object> get props => [];
@@ -13,6 +14,7 @@ class GetTeamsInitial extends GetTeamsState {}
 class GetTeamsLoading extends GetTeamsState {}
 
 class GetTeamsLoaded extends GetTeamsState {
+  @override
   final List<MemberEntity> members;
 
   const GetTeamsLoaded({required this.members});

@@ -1,28 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:soywarmi_app/domain/entity/doctor_entity.dart';
+import 'package:soywarmi_app/domain/entity/member_entity.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class DoctorInfoPage extends StatefulWidget {
-  final DoctorEntity doctor;
-  const DoctorInfoPage({required this.doctor, super.key});
+class MemberInfoPage extends StatefulWidget {
+  final MemberEntity member;
+  const MemberInfoPage({required this.member, super.key});
 
   @override
-  State<DoctorInfoPage> createState() => _DoctorInfoPageState();
+  State<MemberInfoPage> createState() => _MemberInfoPageState();
 }
 
-class _DoctorInfoPageState extends State<DoctorInfoPage> {
-
-
-   Future<void> _makePhoneCall( String phoneNumber) async {
-    // final  url = Uri.parse('tel:$phoneNumber') ; 
-
-    // if (await canLaunchUrl(url)) {
-    //   await launchUrl(url); 
-    // } else {
-    //   throw 'No se pudo iniciar la llamada: $url';
-    // }
-  }
+class _MemberInfoPageState extends State<MemberInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,12 +32,12 @@ class _DoctorInfoPageState extends State<DoctorInfoPage> {
             Center(
               child: CircleAvatar(
                 radius: 45,
-                backgroundImage: NetworkImage(widget.doctor.photo),
+                backgroundImage: NetworkImage(widget.member.photo),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(widget.doctor.name,
+              child: Text(widget.member.name,
                   style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontSize: 20,
@@ -63,9 +52,7 @@ class _DoctorInfoPageState extends State<DoctorInfoPage> {
                   radius: 20,
                   child: IconButton(
                     icon: const Icon(Icons.phone),
-                    onPressed: () {
-
-                    },
+                    onPressed: () {},
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -75,9 +62,7 @@ class _DoctorInfoPageState extends State<DoctorInfoPage> {
                     icon: const Icon(
                       Icons.message,
                     ),
-                    onPressed: () {
-                      _makePhoneCall(widget.doctor.phone);
-                    },
+                    onPressed: () {},
                   ),
                 )
               ],
@@ -98,38 +83,15 @@ class _DoctorInfoPageState extends State<DoctorInfoPage> {
                   const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Sobre el medico',
+                        'Informacion',
                         style: TextStyle(fontSize: 18),
                       )),
                   const SizedBox(height: 10),
-                  const Text(
-                    'Un médico es un profesional que practica la medicina y que intenta mantener y recuperar la salud mediante el estudio, el diagnóstico y el tratamiento de la enfermedad',
-                    style: TextStyle(fontSize: 15),
+                  Text(
+                    widget.member.description,
+                    style: const TextStyle(fontSize: 15),
                   ),
                   const SizedBox(height: 10),
-                  const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Especialidades',
-                        style: TextStyle(fontSize: 18),
-                      )),
-                  const SizedBox(height: 10),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: NbSecondSecondaryColor,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          widget.doctor.specialty,
-                          style: const TextStyle(fontSize: 15),
-                        ),
-                      ),
-                    ),
-                  ),
                   const SizedBox(height: 10),
                   const Align(
                       alignment: Alignment.centerLeft,
@@ -178,7 +140,7 @@ class _DoctorInfoPageState extends State<DoctorInfoPage> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              widget.doctor.phone,
+                              widget.member.phone,
                               style: const TextStyle(fontSize: 15),
                             ),
                           ),
@@ -192,7 +154,7 @@ class _DoctorInfoPageState extends State<DoctorInfoPage> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              widget.doctor.email,
+                              widget.member.email,
                               style: const TextStyle(fontSize: 15),
                             ),
                           ),
