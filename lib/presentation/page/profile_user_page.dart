@@ -114,7 +114,9 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                       ),
                       child: Column(children: [
                         CustomButtonMenu(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/home');
+                          },
                           label: 'Inicio',
                           color: Theme.of(context).primaryColor,
                           icon: Icons.home,
@@ -122,7 +124,10 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                           withButton: ScreenSizeUtil.scaleWidth(0.9),
                         ),
                         CustomButtonMenu(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/news');
+                          
+                          },
                           label: 'Noticias SoyWarmi',
                           color: Theme.of(context).primaryColor,
                           icon: Icons.newspaper,
@@ -140,7 +145,10 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                           withButton: ScreenSizeUtil.scaleWidth(0.9),
                         ),
                         CustomButtonMenu(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/members');
+                          
+                          },
                           label: 'Miembros',
                           color: Theme.of(context).primaryColor,
                           icon: Icons.people,

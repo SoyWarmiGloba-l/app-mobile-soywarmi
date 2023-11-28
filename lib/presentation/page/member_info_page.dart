@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:soywarmi_app/domain/entity/doctor_entity.dart';
 import 'package:soywarmi_app/domain/entity/member_entity.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MemberInfoPage extends StatefulWidget {
   final MemberEntity member;
@@ -161,7 +161,130 @@ class _MemberInfoPageState extends State<MemberInfoPage> {
                         ),
                       ],
                     ),
-                  )
+                  ),
+                  const SizedBox(height: 10),
+                  const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Rol en la comunidad',
+                        style: TextStyle(fontSize: 18),
+                      )),
+                  const SizedBox(height: 10),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: NbSecondSecondaryColor,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              widget.member.role.isEmpty
+                                  ? 'Miembro'
+                                  : widget.member.role,
+                              style: const TextStyle(fontSize: 15),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Genero',
+                        style: TextStyle(fontSize: 18),
+                      )),
+                  const SizedBox(height: 10),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: NbSecondSecondaryColor,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              widget.member.gender.isEmpty
+                                  ? ''
+                                  : widget.member.gender,
+                              style: const TextStyle(fontSize: 15),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Redes sociales',
+                        style: TextStyle(fontSize: 18),
+                      )),
+                  const SizedBox(height: 10),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: NbSecondSecondaryColor,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: IconButton(
+                              icon: const Icon(Icons.facebook),
+                              onPressed: () {
+                                //open facebook
+                              },
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: NbSecondSecondaryColor,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: IconButton(
+                              icon: const Icon(FontAwesomeIcons.instagram),
+                              onPressed: () {
+                                //open instagram
+                              },
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: NbSecondSecondaryColor,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: IconButton(
+                              icon: const Icon(FontAwesomeIcons.twitter),
+                              onPressed: () {
+                                //open twitter
+                                
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ]),
               ),
             ))

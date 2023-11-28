@@ -12,13 +12,11 @@ class DoctorInfoPage extends StatefulWidget {
 }
 
 class _DoctorInfoPageState extends State<DoctorInfoPage> {
-
-
-   Future<void> _makePhoneCall( String phoneNumber) async {
-    // final  url = Uri.parse('tel:$phoneNumber') ; 
+  Future<void> _makePhoneCall(String phoneNumber) async {
+    // final  url = Uri.parse('tel:$phoneNumber') ;
 
     // if (await canLaunchUrl(url)) {
-    //   await launchUrl(url); 
+    //   await launchUrl(url);
     // } else {
     //   throw 'No se pudo iniciar la llamada: $url';
     // }
@@ -63,9 +61,7 @@ class _DoctorInfoPageState extends State<DoctorInfoPage> {
                   radius: 20,
                   child: IconButton(
                     icon: const Icon(Icons.phone),
-                    onPressed: () {
-
-                    },
+                    onPressed: () {},
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -178,7 +174,9 @@ class _DoctorInfoPageState extends State<DoctorInfoPage> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              widget.doctor.phone,
+                              widget.doctor.phone.isEmpty
+                                  ? 'Sin telefono'
+                                  : widget.doctor.phone,
                               style: const TextStyle(fontSize: 15),
                             ),
                           ),
@@ -199,7 +197,30 @@ class _DoctorInfoPageState extends State<DoctorInfoPage> {
                         ),
                       ],
                     ),
-                  )
+                  ),
+                  const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Genero',
+                        style: TextStyle(fontSize: 18),
+                      )),
+                  const SizedBox(height: 10),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: NbSecondSecondaryColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          widget.doctor.gender,
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                      ),
+                    ),
+                  ),
                 ]),
               ),
             ))

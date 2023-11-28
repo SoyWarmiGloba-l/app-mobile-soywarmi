@@ -33,7 +33,7 @@ class ImageContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         image: DecorationImage(
           image: imageUrl == ''
-              ? const AssetImage(NbLogoPost)
+              ? const NetworkImage('https://source.unsplash.com/random/800x600/?news')
               : NetworkImage(imageUrl) as ImageProvider,
           fit: BoxFit.cover,
         ),

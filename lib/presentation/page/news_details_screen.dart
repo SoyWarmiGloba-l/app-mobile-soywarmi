@@ -30,7 +30,7 @@ class NewsDetailsScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: news.image == ''
-                        ? const AssetImage(NbLogoPost)
+                        ? const NetworkImage('https://source.unsplash.com/random/800x600/?news')
                         : NetworkImage(news.image) as ImageProvider,
                     fit: BoxFit.cover,
                   ),
