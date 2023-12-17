@@ -326,7 +326,22 @@ class _MapPageState extends State<MapPage> {
         }
 
         if (state is GetMedicalCentersError) {
-          return const Center(child: Text('Error'));
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                    'No se pudo cargar los centros medicos, intente nuevamente'),
+                IconButton(
+                  onPressed: () {
+                    sl<GetMedicalCentersCubit>().getMedicalCenters();
+                  },
+                  icon: Icon(Icons.refresh,
+                      color: Theme.of(context).primaryColor),
+                )
+              ],
+            ),
+          );
         }
         return const Center(child: CircularProgressIndicator());
       },

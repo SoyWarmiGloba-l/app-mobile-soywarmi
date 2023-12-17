@@ -23,6 +23,7 @@ class CustomButton extends StatelessWidget {
           label,
           style: const TextStyle(
             fontSize: 18,
+            color: NBColorWhite
           ),
         ),
       ),

@@ -28,6 +28,7 @@ class AuthenticatorRepositoryImplementation extends AuthenticatorRepository {
 
         return Right(result);
       } else {
+        
         return Left(AuthenticationFailure('Invalid authenticator type'));
       }
     } on FirebaseAuthException catch (e) {

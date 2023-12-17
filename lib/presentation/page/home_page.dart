@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:soywarmi_app/core/inyection_container.dart';
+import 'package:soywarmi_app/core/language/locales.dart';
 import 'package:soywarmi_app/presentation/bloc/activity/get_activity_cubit.dart';
 import 'package:soywarmi_app/presentation/bloc/activity/get_activity_state.dart';
 import 'package:soywarmi_app/presentation/bloc/news/get_news_cubit.dart';
@@ -12,7 +14,6 @@ import 'package:soywarmi_app/presentation/page/news_details_screen.dart';
 import 'package:soywarmi_app/presentation/widget/custom_text_litle.dart';
 import 'package:soywarmi_app/presentation/widget/image_container.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
-import 'package:soywarmi_app/utilities/nb_images.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
             child: Padding(
               padding: const EdgeInsets.only(left: 20, top: 8),
               child: Text(
-                'Hola, Maria Gonzales!',
+                '${LocaleData.hola.getString(context)}, Maria Gonzales!',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -58,15 +59,16 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.only(left: 20, right: 10),
             child: Row(
               children: [
-                const CustomTextTitle(label: 'Noticias de SoyWarmi'),
+                CustomTextTitle(
+                    label: LocaleData.noticiasSoyWarmi.getString(context)),
                 const Spacer(),
                 TextButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/news');
                   },
-                  child: const Text(
-                    'Ver todo',
-                    style: TextStyle(
+                  child:  Text(
+                    LocaleData.verTodo.getString(context),
+                    style: const TextStyle(
                       fontSize: 12,
                       color: NBSecondPrimaryColor,
                     ),
@@ -80,7 +82,7 @@ class _HomePageState extends State<HomePage> {
               left: 20,
             ),
             child: SizedBox(
-              height: 220,
+              height: MediaQuery.of(context).size.height * 0.3,
               child: BlocBuilder<GetNewsCubit, GetNewsState>(
                 bloc: sl<GetNewsCubit>()..getNews(),
                 builder: (context, state) {
@@ -139,7 +141,20 @@ class _HomePageState extends State<HomePage> {
                   }
 
                   if (state is GetNewsError) {
-                    return const Center(child: Text('Error'));
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                            'No se pudo cargar las noticias, intente de nuevo'),
+                        IconButton(
+                          onPressed: () {
+                            sl<GetNewsCubit>().getNews();
+                          },
+                          icon: Icon(Icons.refresh,
+                              color: Theme.of(context).primaryColor),
+                        )
+                      ],
+                    );
                   }
                   return const Center(child: CircularProgressIndicator());
                 },
@@ -150,15 +165,15 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.only(left: 20, right: 10),
             child: Row(
               children: [
-                const CustomTextTitle(label: 'Miembros'),
+                CustomTextTitle(label: LocaleData.miembros.getString(context)),
                 const Spacer(),
                 TextButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/members');
                   },
-                  child: const Text(
-                    'Ver todo',
-                    style: TextStyle(
+                  child:  Text(
+                    LocaleData.verTodo.getString(context),
+                    style: const TextStyle(
                       fontSize: 12,
                       color: NBSecondPrimaryColor,
                     ),
@@ -177,9 +192,20 @@ class _HomePageState extends State<HomePage> {
                   bloc: sl<GetTeamsCubit>()..getTeams(),
                   builder: (context, state) {
                     if (state is GetTeamsError) {
-                      return const Center(
-                          child: Text(
-                              'No pudimos cargar los datos, vuelva a intentarlo'));
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                              'No se pudo cargar los miembros, intente de nuevo'),
+                          IconButton(
+                            onPressed: () {
+                              sl<GetTeamsCubit>().getTeams();
+                            },
+                            icon: Icon(Icons.refresh,
+                                color: Theme.of(context).primaryColor),
+                          )
+                        ],
+                      );
                     }
                     if (state is GetTeamsLoaded) {
                       final members = state.members;
@@ -249,9 +275,9 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     Navigator.pushNamed(context, '/activity');
                   },
-                  child: const Text(
-                    'Ver todo',
-                    style: TextStyle(
+                  child:  Text(
+                    LocaleData.verTodo.getString(context),
+                    style: const TextStyle(
                       fontSize: 12,
                       color: NBSecondPrimaryColor,
                     ),
@@ -309,7 +335,6 @@ class _HomePageState extends State<HomePage> {
                                     style:
                                         Theme.of(context).textTheme.bodySmall),
                                 const SizedBox(height: 5),
-                                
                               ],
                             ),
                           ),
@@ -319,7 +344,20 @@ class _HomePageState extends State<HomePage> {
                   }
 
                   if (state is GetNewsError) {
-                    return const Center(child: Text('Error'));
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                            'No se pudo cargar las actividades, intente de nuevo'),
+                        IconButton(
+                          onPressed: () {
+                            sl<GetActivityCubit>().getActivity();
+                          },
+                          icon: Icon(Icons.refresh,
+                              color: Theme.of(context).primaryColor),
+                        )
+                      ],
+                    );
                   }
                   return const Center(child: CircularProgressIndicator());
                 },

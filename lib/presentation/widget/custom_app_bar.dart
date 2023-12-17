@@ -11,8 +11,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       elevation: 0,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      toolbarHeight: 80,
       leading: Padding(
-        padding: const EdgeInsets.only(left: 8),
+        padding: const EdgeInsets.only(left: 8,top: 8),
         child: Image.asset(NbLogoAppBar,
             height: 50, width: 50, fit: BoxFit.contain),
       ),

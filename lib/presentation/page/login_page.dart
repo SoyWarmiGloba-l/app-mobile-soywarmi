@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:soywarmi_app/core/language/locales.dart';
 import 'package:soywarmi_app/data/remote/authenticator_firebase_remote_data_source.dart';
 import 'package:soywarmi_app/data/repository/authenticator_repository_implementation.dart';
 import 'package:soywarmi_app/domain/usescase/auth/sign_in_usecase.dart';
@@ -50,6 +52,18 @@ class __LoginPageViewState extends State<_LoginPageView> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  late FlutterLocalization _flutterLocalization;
+  late String _selectedLanguage;
+  int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _flutterLocalization = FlutterLocalization.instance;
+    _selectedLanguage = _flutterLocalization.currentLocale!.languageCode;
+    print(_selectedLanguage);
+  }
+
   @override
   Widget build(BuildContext context) {
     ScreenSizeUtil.init(context);
@@ -80,151 +94,198 @@ class __LoginPageViewState extends State<_LoginPageView> {
               ),
             );
           }
-          return Center(
-            child: Container(
-              margin: const EdgeInsets.only(left: 20, right: 20),
-              child: SingleChildScrollView(
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                    Image.asset(
-                      NBWarmiLogo,
-                      width: ScreenSizeUtil.scaleWidth(0.8),
-                      height: ScreenSizeUtil.scaleHeight(0.28),
-                    ),
-                    Text(
-                      'Iniciar sesión',
-                      style: TextStyle(
-                        fontSize: 38,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                    ),
-                    SizedBox(height: ScreenSizeUtil.scaleHeight(0.05)),
-                    Center(
-                      child: Form(
-                        key: _formKey,
-                        child: Column(children: [
-                          CustomTextField(
-                            label: 'Correo',
-                            onSaved: (value) {
-                              _email = value!;
-                            },
-                            validator: (values) {
-                              if (values!.isEmpty) {
-                                
-                                return 'Por favor, introduce tu correo electronico';
-                              }
-                              return null;
-                            },
-                            type: TextInputType.emailAddress,
-                            controller: emailController,
-                            colored: true,
+          return Stack(
+            children: [
+              Center(
+                child: Container(
+                  margin: const EdgeInsets.only(left: 20, right: 20),
+                  child: SingleChildScrollView(
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                        Image.asset(
+                          NBWarmiLogo,
+                          width: ScreenSizeUtil.scaleWidth(0.8),
+                          height: ScreenSizeUtil.scaleHeight(0.28),
+                        ),
+                        Text(
+                          LocaleData.inicioSesion.getString(context),
+                          style: TextStyle(
+                            fontSize: 38,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).primaryColor,
                           ),
-                          CustomTextPassword(
-                            label: 'Constraseña',
-                            type: TextInputType.visiblePassword,
-                            onSaved: (value) {
-                              _password = value!;
-                            },
-                            validator: (values) {
-                              if (values!.isEmpty) {
-                                return 'Por favor, introduce tu contraseña';
-                              }
-                              return null;
-                            },
-                            controller: passwordController,
-                          ),
-                          Align(
-                              alignment: Alignment.centerRight,
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, '/forgot_password');
+                        ),
+                        SizedBox(height: ScreenSizeUtil.scaleHeight(0.05)),
+                        Center(
+                          child: Form(
+                            key: _formKey,
+                            child: Column(children: [
+                              CustomTextField(
+                                label: LocaleData.correoElectronico.getString(context),
+                                onSaved: (value) {
+                                  _email = value!;
                                 },
-                                child: Text('¿Olvidaste tu contraseña?',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: Theme.of(context)
-                                            .primaryColorDark
-                                            .withOpacity(0.5))),
-                              )),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 20,
-                            ),
-                            child: CustomButton(
-                              label: 'Iniciar sesión',
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  _formKey.currentState!.save();
-                                  context.read<SignInCubit>().signIn(
-                                        'email',
-                                        email: emailController.text,
-                                        password: passwordController.text,
-                                      );
-                                }
-                              },
-                            ),
-                          ),
-                          const Row(
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: Divider(
-                                  thickness: 1,
-                                ),
+                                validator: (values) {
+                                  if (values!.isEmpty) {
+                                    return 'Por favor, introduce tu correo electronico';
+                                  }
+                                  return null;
+                                },
+                                type: TextInputType.emailAddress,
+                                controller: emailController,
+                                colored: true,
                               ),
+                              CustomTextPassword(
+                                label: LocaleData.contrasena.getString(context),
+                                type: TextInputType.visiblePassword,
+                                onSaved: (value) {
+                                  _password = value!;
+                                },
+                                validator: (values) {
+                                  if (values!.isEmpty) {
+                                    return 'Por favor, introduce tu contraseña';
+                                  }
+                                  return null;
+                                },
+                                controller: passwordController,
+                              ),
+                              Align(
+                                  alignment: Alignment.centerRight,
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, '/forgot_password');
+                                    },
+                                    child: Text(LocaleData.olvidasteContrasena.getString(context),
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            color: Theme.of(context)
+                                                .primaryColorDark
+                                                .withOpacity(0.5))),
+                                  )),
                               Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text('O',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                    )),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: Divider(
-                                  thickness: 1,
+                                padding: const EdgeInsets.only(
+                                  top: 20,
+                                ),
+                                child: CustomButton(
+                                  label: LocaleData.inicioSesion.getString(context)  ,
+                                  onPressed: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      _formKey.currentState!.save();
+                                      context.read<SignInCubit>().signIn(
+                                            'email',
+                                            email: emailController.text,
+                                            password: passwordController.text,
+                                          );
+                                    }
+                                  },
                                 ),
                               ),
-                            ],
-                          ),
-                           GoogleButton(
-                            onPressed: (){
-                               BlocProvider.of<SignInCubit>(context).signIn('google');
-                            },
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('¿No tienes cuenta?',
-                                  style: TextStyle(
-                                      color: Theme.of(context)
-                                          .primaryColorDark
-                                          .withOpacity(0.5))),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.pushNamed(context, '/register');
-                                },
-                                child: const Text(
-                                  ' Registrate',
-                                  style: TextStyle(
-                                    color: NBSecondPrimaryColor,
-                                    fontWeight: FontWeight.bold,
+                              const Row(
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Divider(
+                                      thickness: 1,
+                                    ),
                                   ),
-                                ),
-                              )
-                            ],
+                                  Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Text('O',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        )),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Divider(
+                                      thickness: 1,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              GoogleButton(
+                                title: LocaleData.iniciaSesionGoogle.getString(context),
+                                onPressed: () {
+                                  BlocProvider.of<SignInCubit>(context)
+                                      .signIn('google');
+                                },
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(LocaleData.noTienesCuenta.getString(context),
+                                      style: TextStyle(
+                                          color: Theme.of(context)
+                                              .primaryColorDark
+                                              .withOpacity(0.5))),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.pushNamed(context, '/register');
+                                    },
+                                    child:  Text(
+                                      ' ${LocaleData.registrate.getString(context)}',
+                                      style: const TextStyle(
+                                        color: NBSecondPrimaryColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ]),
                           ),
-                        ]),
-                      ),
-                    )
-                  ])),
-            ),
+                        )
+                      ])),
+                ),
+              ),
+              Positioned(
+                top: 40,
+                right: 20,
+                child: DropdownButton<String>(
+                iconSize: 42,
+                value: _selectedLanguage,
+                dropdownColor: Colors.white,
+                items: const [
+                  DropdownMenuItem<String>(
+                    value: 'ay',
+                    child: Text('Aymara'),
+                  ),
+                  DropdownMenuItem<String>(
+                    value: 'es',
+                    child: Text('Español'),
+                  ),
+                ],
+                icon: Icon(Icons.language, color: Theme.of(context).primaryColor,
+                    size: 30),
+                underline: null,
+                onChanged: (String? value) {
+                  setLocale(value);
+                },
+                hint: const Text('Idioma'),
+                style: TextStyle(
+                    color: Theme.of(context).primaryColor, fontSize: 16),
+              ),
+              ),
+            ],
           );
         },
       ),
     );
+  }
+
+  void setLocale(String? value) {
+    if (value == null) return;
+
+    if (value == 'es') {
+      _flutterLocalization.translate('es');
+    } else if (value == 'ay') {
+      _flutterLocalization.translate('ay');
+    }
+
+    setState(() {
+      _selectedLanguage = value;
+    });
   }
 }

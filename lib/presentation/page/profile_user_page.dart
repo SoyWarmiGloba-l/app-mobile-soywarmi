@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:soywarmi_app/core/language/locales.dart';
 import 'package:soywarmi_app/presentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:soywarmi_app/presentation/widget/custom_button_menu.dart';
 import 'package:soywarmi_app/utilities/nb_colors.dart';
@@ -14,6 +16,32 @@ class ProfileUserPage extends StatefulWidget {
 }
 
 class _ProfileUserPageState extends State<ProfileUserPage> {
+  late FlutterLocalization _flutterLocalization;
+  late String _selectedLanguage;
+  int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _flutterLocalization = FlutterLocalization.instance;
+    _selectedLanguage = _flutterLocalization.currentLocale!.languageCode;
+    print(_selectedLanguage);
+  }
+
+  void setLocale(String? value) {
+    if (value == null) return;
+
+    if (value == 'es') {
+      _flutterLocalization.translate('es');
+    } else if (value == 'ay') {
+      _flutterLocalization.translate('ay');
+    }
+
+    setState(() {
+      _selectedLanguage = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +54,36 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
             },
             icon: Icon(Icons.cancel, color: Theme.of(context).primaryColor),
           ),
+          actions: [
+            //cambiar idioma
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: DropdownButton<String>(
+                iconSize: 42,
+                value: _selectedLanguage,
+                dropdownColor: Colors.white,
+                items: const [
+                  DropdownMenuItem<String>(
+                    value: 'ay',
+                    child: Text('Aymara'),
+                  ),
+                  DropdownMenuItem<String>(
+                    value: 'es',
+                    child: Text('Español'),
+                  ),
+                ],
+                icon: Icon(Icons.language,
+                    color: Theme.of(context).primaryColor, size: 30),
+                underline: null,
+                onChanged: (String? value) {
+                  setLocale(value);
+                },
+                hint: const Text('Idioma'),
+                style: TextStyle(
+                    color: Theme.of(context).primaryColor, fontSize: 16),
+              ),
+            ),
+          ],
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -40,7 +98,7 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Container(
-                      height: 200,
+                      height: MediaQuery.of(context).size.height * 0.23,
                       decoration: const BoxDecoration(
                         color: NbSecondSecondaryColor,
                         borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -90,11 +148,11 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                                 onPressed: () {
                                   Navigator.pushNamed(context, '/edit_profile');
                                 },
-                                child: const Padding(
-                                  padding: EdgeInsets.only(left: 20, right: 20),
+                                child:  Padding(
+                                  padding: const EdgeInsets.only(left: 20, right: 20),
                                   child: Text(
-                                    'Editar perfil',
-                                    style: TextStyle(fontSize: 12),
+                                    LocaleData.editarPerfil.getString(context),
+                                    style: const TextStyle(fontSize: 12),
                                   ),
                                 ),
                               ),
@@ -108,7 +166,6 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                   Card(
                     elevation: 4,
                     child: Container(
-                      height: 330,
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                       ),
@@ -117,7 +174,7 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                           onPressed: () {
                             Navigator.pushNamed(context, '/home');
                           },
-                          label: 'Inicio',
+                          label: LocaleData.inicio.getString(context),
                           color: Theme.of(context).primaryColor,
                           icon: Icons.home,
                           size: 55,
@@ -126,9 +183,8 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                         CustomButtonMenu(
                           onPressed: () {
                             Navigator.pushNamed(context, '/news');
-                          
                           },
-                          label: 'Noticias SoyWarmi',
+                          label: LocaleData.noticiasSoyWarmi.getString(context),
                           color: Theme.of(context).primaryColor,
                           icon: Icons.newspaper,
                           size: 55,
@@ -138,7 +194,7 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                           onPressed: () {
                             Navigator.pushNamed(context, '/about_us');
                           },
-                          label: 'Quienes somos',
+                          label: LocaleData.quienesSomos.getString(context),
                           color: Theme.of(context).primaryColor,
                           icon: Icons.question_mark,
                           size: 55,
@@ -147,9 +203,8 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                         CustomButtonMenu(
                           onPressed: () {
                             Navigator.pushNamed(context, '/members');
-                          
                           },
-                          label: 'Miembros',
+                          label: LocaleData.miembros.getString(context),
                           color: Theme.of(context).primaryColor,
                           icon: Icons.people,
                           size: 55,
@@ -159,9 +214,19 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                           onPressed: () {
                             Navigator.pushNamed(context, '/frequent_questions');
                           },
-                          label: 'Preguntas frecuentes',
+                          label: LocaleData.preguntasFrecuentes.getString(context),
                           color: Theme.of(context).primaryColor,
                           icon: Icons.question_answer,
+                          size: 55,
+                          withButton: ScreenSizeUtil.scaleWidth(0.9),
+                        ),
+                        CustomButtonMenu(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/complaint');
+                          },
+                          label: LocaleData.denunciar.getString(context),
+                          color: Theme.of(context).primaryColor,
+                          icon: Icons.warning,
                           size: 55,
                           withButton: ScreenSizeUtil.scaleWidth(0.9),
                         ),
@@ -182,10 +247,11 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                                   .read<AuthenticationBloc>()
                                   .add(SignOutRequested());
                             },
-                            child: const Text(
-                              'Cerrar sesión',
-                              style: TextStyle(fontSize: 15),
-                            ))
+                            child:  Text(
+                              LocaleData.cerrarSesion.getString(context),
+                              style: const TextStyle(fontSize: 15),
+                            )),
+                        const SizedBox(height: 10),
                       ]),
                     ),
                   ),

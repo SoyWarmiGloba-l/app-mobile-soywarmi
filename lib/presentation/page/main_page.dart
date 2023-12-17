@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:soywarmi_app/core/language/locales.dart';
 import 'package:soywarmi_app/presentation/page/chats_page.dart';
 import 'package:soywarmi_app/presentation/page/home_page.dart';
 import 'package:soywarmi_app/presentation/page/map_page.dart';
@@ -15,18 +17,28 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-List<String> _titles = [
-  'SoyWarmi',
-  'Hospitales',
-  'Especialistas',
-  'Posts',
-  'Chats',
-];
-
 class _MainPageState extends State<MainPage> {
+  late FlutterLocalization _flutterLocalization;
+  late String _selectedLanguage;
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _flutterLocalization = FlutterLocalization.instance;
+    _selectedLanguage = _flutterLocalization.currentLocale!.languageCode;
+    print(_selectedLanguage);
+  }
+
   @override
   Widget build(BuildContext context) {
+    List<String> _titles = [
+      LocaleData.inicio.getString(context),
+      LocaleData.hospitales.getString(context),
+      LocaleData.especialidades.getString(context),
+      LocaleData.publicaciones.getString(context),
+      'Chats',
+    ];
     return Scaffold(
         appBar: CustomAppBar(
           title: _titles[_selectedIndex],
@@ -37,7 +49,7 @@ class _MainPageState extends State<MainPage> {
             HomePage(),
             MapPage(),
             SpecialistsPage(),
-            PostPage(),
+            PostsPage(),
             ChatsPage(),
           ],
         ),

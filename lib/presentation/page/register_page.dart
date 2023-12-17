@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:soywarmi_app/core/language/locales.dart';
 import 'package:soywarmi_app/presentation/widget/custom_button.dart';
 import 'package:soywarmi_app/presentation/widget/custom_text_field.dart';
 import 'package:soywarmi_app/presentation/widget/custom_text_password.dart';
@@ -27,7 +29,7 @@ class __RegisterPageState extends State<_RegisterPage> {
     return Scaffold(
       body: Center(
           child: Container(
-        margin: EdgeInsets.only(right: 23, left: 23),
+        margin: const EdgeInsets.only(right: 23, left: 23),
         child: SingleChildScrollView(
             reverse: true,
             child: Column(
@@ -38,25 +40,35 @@ class __RegisterPageState extends State<_RegisterPage> {
                   height: 160,
                   width: 250,
                 ),
-                const Text(
-                  'Crea tu cuenta',
-                  style: TextStyle(
+                Text(
+                  LocaleData.crearTuCuenta.getString(context),
+                  style: const TextStyle(
                       fontSize: 38,
                       fontWeight: FontWeight.bold,
                       color: NBPrimaryColor),
                 ),
                 const SizedBox(height: 10),
-                const CustomTextField(label: 'Correo'),
-                const CustomTextField(label: 'Nombre'),
-                const CustomTextField(label: 'Apellido'),
-                const CustomTextPassword(label: 'Contraseña'),
+                CustomTextField(
+                  label: LocaleData.correoElectronico.getString(context),
+                  colored: true,
+                ),
+                CustomTextField(
+                  label: LocaleData.nombre.getString(context),
+                  colored: true,
+                ),
+                CustomTextField(
+                  label: LocaleData.apellido.getString(context),
+                  colored: true,
+                ),
+                CustomTextPassword(
+                    label: LocaleData.contrasena.getString(context)),
                 const CustomTextPassword(label: 'Confirmar contraseña'),
                 Padding(
                   padding: const EdgeInsets.only(
                     top: 20,
                   ),
                   child: CustomButton(
-                    label: 'Crear cuenta',
+                    label: LocaleData.crearCuenta.getString(context),
                     onPressed: () {},
                   ),
                 ),
@@ -64,7 +76,7 @@ class __RegisterPageState extends State<_RegisterPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('¿Ya tienes cuenta?',
+                    Text(LocaleData.yaTienesCuenta.getString(context),
                         style: TextStyle(
                             color: Theme.of(context)
                                 .primaryColorDark
@@ -73,9 +85,9 @@ class __RegisterPageState extends State<_RegisterPage> {
                       onTap: () {
                         Navigator.of(context).pop();
                       },
-                      child: const Text(
-                        ' Inicia Sesión',
-                        style: TextStyle(
+                      child: Text(
+                        ' ${LocaleData.inicioSesion.getString(context)}',
+                        style: const TextStyle(
                           color: NBSecondPrimaryColor,
                           fontWeight: FontWeight.bold,
                         ),

@@ -127,8 +127,19 @@ class _MembersPageState extends State<MembersPage> {
                     );
                   }
                   if (state is GetTeamsError) {
-                    return const Center(
-                      child: Text('Error al cargar los miembros'),
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                            'No se pudo cargar los miembros, intente de nuevo'),
+                        IconButton(
+                          onPressed: () {
+                            sl<GetTeamsCubit>().getTeams();
+                          },
+                          icon: Icon(Icons.refresh,
+                              color: Theme.of(context).primaryColor),
+                        )
+                      ],
                     );
                   }
                   return const Center(child: CircularProgressIndicator());

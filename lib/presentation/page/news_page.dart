@@ -39,18 +39,15 @@ class _NewsPageState extends State<NewsPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(
-                    Icons.error_outline,
-                    color: Colors.blue,
-                    size: 100,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    state.message,
-                    style: const TextStyle(color: Colors.blue, fontSize: 16),
-                  ),
+                  const Text(
+                      'No se pudo cargar las noticias, intente de nuevo'),
+                  IconButton(
+                    onPressed: () {
+                      sl<GetNewsCubit>().getNews();
+                    },
+                    icon: Icon(Icons.refresh,
+                        color: Theme.of(context).primaryColor),
+                  )
                 ],
               ),
             );

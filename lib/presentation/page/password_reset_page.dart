@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:lottie/lottie.dart';
+import 'package:soywarmi_app/core/language/locales.dart';
 import 'package:soywarmi_app/data/repository/authentication_state_repositoy_implementation.dart';
 import 'package:soywarmi_app/domain/usescase/auth/reset_password_usecase.dart';
 import 'package:soywarmi_app/presentation/bloc/reset_password/reset_password_cubit.dart';
@@ -27,7 +29,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
         backgroundColor: NBColorWhite,
         elevation: 0,
         centerTitle: false,
-        title: const Text('Atras', style: TextStyle(color: NBPrimaryColor)),
+        title:  Text(LocaleData.atras.getString(context), style: const TextStyle(color: NBPrimaryColor)),
         iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
       ),
       body: BlocProvider(
@@ -70,10 +72,10 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                       height: ScreenSizeUtil.scaleWidth(0.28),
                       width: ScreenSizeUtil.scaleHeight(0.8),
                     ),
-                    const Text(
-                      'Olvidaste tu contraseña?',
+                    Text(
+                      '${LocaleData.olvidasteContrasena.getString(context)}?',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                         color: NBPrimaryColor,
@@ -92,7 +94,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                       ),
                     ),
                     CustomTextField(
-                      label: 'Correo',
+                      label: LocaleData.correoElectronico.getString(context),
                       onSaved: (value) {
                         _email = value!;
                       },
@@ -109,7 +111,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                         top: 20,
                       ),
                       child: CustomButton(
-                        label: 'Restablecer contraseña',
+                        label: LocaleData.restablecerContrasena.getString(context),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();

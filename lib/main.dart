@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:soywarmi_app/core/inyection_container.dart' as sl;
+import 'package:soywarmi_app/core/language/locales.dart';
 import 'package:soywarmi_app/firebase_options.dart';
 import 'package:soywarmi_app/presentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:soywarmi_app/presentation/page/about_us_page.dart';
 import 'package:soywarmi_app/presentation/page/activities_page.dart';
+import 'package:soywarmi_app/presentation/page/complaint_page.dart';
 import 'package:soywarmi_app/presentation/page/edit_profile_page.dart';
 import 'package:soywarmi_app/presentation/page/frequent_asked_questions_page.dart';
 import 'package:soywarmi_app/presentation/page/main_page.dart';
@@ -22,6 +25,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:soywarmi_app/utilities/nb_images.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,8 +38,33 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final localization = FlutterLocalization.instance;
+
+  @override
+  void initState() {
+    configureLocalization();
+    super.initState();
+    
+  }
+
+  void configureLocalization() {
+    localization.init(mapLocales: LOCALES, initLanguageCode: "es");
+    localization.onTranslatedLanguage = onTranslatedLanguage;
+  }
+
+  void onTranslatedLanguage(Locale? locale) {
+    setState(() {
+      
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +82,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: AppThemeData.theme,
+        localizationsDelegates: localization.localizationsDelegates,
+        supportedLocales: localization.supportedLocales,
+        locale: const Locale('es', 'ES'),
         initialRoute: '/',
         routes: {
           '/': (context) => AnimatedSplashScreen(
@@ -69,13 +101,15 @@ class MyApp extends StatelessWidget {
           '/profile': (context) => const ProfileUserPage(),
           '/edit_profile': (context) => const EditProfilePage(),
           '/new_post': (context) => const NewPostPage(),
-          '/notifications': (context) => const NotificationsPage(),          
+          '/notifications': (context) => const NotificationsPage(),
           '/about_us': (context) => const AboutUsPage(),
           '/frequent_questions': (context) =>
               const FrequentAskedQuestionsPage(),
           '/members': (context) => const MembersPage(),
-          '/news' :(context) => const NewsPage(),
-          '/activity' :(context) => const ActivitiesPage(),
+          '/news': (context) => const NewsPage(),
+          '/activity': (context) => const ActivitiesPage(),
+          '/complaint':(context) => const ComplaintPage(),
+
         },
       ),
     );

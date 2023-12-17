@@ -39,7 +39,7 @@ class MemberModel extends PersonModel {
 
   factory MemberModel.fromJson(Map<String, dynamic> json) {
     return MemberModel(
-        id: json['person']['id'] as int,
+        id: 0,
         name: (json['person']['name'] ?? '') as String,
         lastName: (json['person']['lastname'] ?? '') as String,
         motherLastname: (json['person']['mother_lastname'] ?? '') as String,

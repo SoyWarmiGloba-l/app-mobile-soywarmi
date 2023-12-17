@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:lottie/lottie.dart';
+import 'package:soywarmi_app/core/language/locales.dart';
 
 class NotificationsPage extends StatefulWidget {
   const NotificationsPage({super.key});
@@ -16,7 +18,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
           elevation: 0,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           title: Text(
-            'Notificaciones',
+            LocaleData.notificaciones.getString(context),
             style: TextStyle(color: Theme.of(context).primaryColor),
           ),
           centerTitle: false,
@@ -42,7 +44,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
               Lottie.asset('assets/animations/no_notifications.json',
                   height: 250),
               Text(
-                'No tienes notificaciones',
+                LocaleData.noTienesNotificaciones.getString(context),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 20,

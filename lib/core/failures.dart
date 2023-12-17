@@ -54,6 +54,14 @@ class NewsFailure extends Failure {
   List<Object> get props => [message];
 }
 
+class PublicationsFailure extends Failure {
+  PublicationsFailure(this.message);
+  final String message;
+
+  @override
+  List<Object> get props => [message];
+}
+
 class AuthenticationFailure extends Failure {
   AuthenticationFailure([String? message])
       : message =
@@ -82,7 +90,7 @@ class AuthenticationFailure extends Failure {
           'Credenciales inválidas.',
         );
       default:
-        return AuthenticationFailure();
+        return AuthenticationFailure(code);
     }
   }
 

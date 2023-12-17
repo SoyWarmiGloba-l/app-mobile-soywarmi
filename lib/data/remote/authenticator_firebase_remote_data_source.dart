@@ -14,9 +14,15 @@ abstract class AuthenticatorFirebaseRemoteDataSource {
   Future<void> signIn({String? email, String? password});
 }
 
+const List<String> scopes = <String>[
+  'email',
+  'https://www.googleapis.com/auth/contacts.readonly',
+];
+
 class EmailAuthenticatorFirebaseRemoteDataSourceImplementation
     extends AuthenticatorFirebaseRemoteDataSource {
   final storage = const FlutterSecureStorage();
+
   @override
   Future<void> signIn({String? email, String? password}) async {
     if (email == null || password == null) {
@@ -50,7 +56,7 @@ class GoogleAuthenticatorFirebaseRemoteDataSourceImplementation
   @override
   Future<void> signIn({String? email, String? password}) async {
     try {
-      final googleSingIn = GoogleSignIn();
+      final googleSingIn = GoogleSignIn( scopes: scopes );
       final googleAccount = await googleSingIn.signIn();
 
       if (googleAccount == null) {
@@ -87,4 +93,3 @@ class GoogleAuthenticatorFirebaseRemoteDataSourceImplementation
     throw UnimplementedError();
   }
 }
-

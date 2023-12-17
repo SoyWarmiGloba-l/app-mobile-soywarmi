@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:soywarmi_app/utilities/nb_images.dart';
 
 class GoogleButton extends StatelessWidget {
-
   final void Function()? onPressed;
-  const GoogleButton({Key? key, this.onPressed}) : super(key: key);
+  const GoogleButton({Key? key, this.onPressed, required this.title})
+      : super(key: key);
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +33,9 @@ class GoogleButton extends StatelessWidget {
                 height: 25,
               ),
               const SizedBox(width: 10),
-              const Text(
-                'Iniciar sesión con Google',
-                style: TextStyle(
+              Text(
+                title,
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.black,
                 ),

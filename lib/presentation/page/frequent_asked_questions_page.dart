@@ -100,7 +100,19 @@ class _FrequentAskedQuestionsPageState
                   }
 
                   if (state is GetFaqsError) {
-                    return Center(child: Text(state.message));
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Error al cargar las preguntas frecuentes'),
+                        IconButton(
+                          onPressed: () {
+                            sl<GetFaqsCubit>().getFaqs();
+                          },
+                          icon: Icon(Icons.refresh,
+                              color: Theme.of(context).primaryColor),
+                        )
+                      ],
+                    );
                   }
 
                   return const Center(child: CircularProgressIndicator());

@@ -9,6 +9,7 @@ class AppThemeData {
   static final ThemeData theme = ThemeData(
     scaffoldBackgroundColor: NBColorWhite,
     primaryColor: NBPrimaryColor,
+    useMaterial3: false,
     canvasColor: NBColorBlack,
     primaryColorLight: NBColorWhite,
     primaryColorDark: NBColorBlack,

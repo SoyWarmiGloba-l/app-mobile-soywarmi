@@ -80,7 +80,7 @@ class _SpecialistsPageState extends State<SpecialistsPage> {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Error al cargar los datos, intente nuevamente'),
+                    const Text('No se pudo cargar los doctores, intente de nuevo'),
                     IconButton(
                       onPressed: () {
                         sl<GetDoctorCubit>().getDoctor();
